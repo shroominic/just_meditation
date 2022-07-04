@@ -1,0 +1,673 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D53C20A928736849007930C5 /* Just_MeditationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53C20A828736849007930C5 /* Just_MeditationApp.swift */; };
+		D53C20AB28736849007930C5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53C20AA28736849007930C5 /* ContentView.swift */; };
+		D53C20AD2873684A007930C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D53C20AC2873684A007930C5 /* Assets.xcassets */; };
+		D53C20B02873684A007930C5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D53C20AF2873684A007930C5 /* Preview Assets.xcassets */; };
+		D53C20B42873684A007930C5 /* Just Meditation WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D53C20B32873684A007930C5 /* Just Meditation WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D53C20B92873684A007930C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D53C20B82873684A007930C5 /* Assets.xcassets */; };
+		D53C20BF2873684B007930C5 /* Just Meditation WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D53C20BE2873684B007930C5 /* Just Meditation WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D53C20C42873684B007930C5 /* Just_MeditationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53C20C32873684B007930C5 /* Just_MeditationApp.swift */; };
+		D53C20C62873684B007930C5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53C20C52873684B007930C5 /* ContentView.swift */; };
+		D53C20C82873684B007930C5 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53C20C72873684B007930C5 /* NotificationController.swift */; };
+		D53C20CA2873684B007930C5 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53C20C92873684B007930C5 /* NotificationView.swift */; };
+		D53C20CC2873684B007930C5 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53C20CB2873684B007930C5 /* ComplicationController.swift */; };
+		D53C20CE2873684B007930C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D53C20CD2873684B007930C5 /* Assets.xcassets */; };
+		D53C20D12873684B007930C5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D53C20D02873684B007930C5 /* Preview Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D53C20B52873684A007930C5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D53C209D28736849007930C5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D53C20B22873684A007930C5;
+			remoteInfo = "Just Meditation WatchKit App";
+		};
+		D53C20C02873684B007930C5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D53C209D28736849007930C5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D53C20BD2873684B007930C5;
+			remoteInfo = "Just Meditation WatchKit Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D53C20D92873684B007930C5 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D53C20BF2873684B007930C5 /* Just Meditation WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D53C20DD2873684B007930C5 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				D53C20B42873684A007930C5 /* Just Meditation WatchKit App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		D53C20A528736849007930C5 /* Just Meditation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Just Meditation.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D53C20A828736849007930C5 /* Just_MeditationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Just_MeditationApp.swift; sourceTree = "<group>"; };
+		D53C20AA28736849007930C5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D53C20AC2873684A007930C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D53C20AF2873684A007930C5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D53C20B32873684A007930C5 /* Just Meditation WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Just Meditation WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D53C20B82873684A007930C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D53C20BE2873684B007930C5 /* Just Meditation WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Just Meditation WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D53C20C32873684B007930C5 /* Just_MeditationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Just_MeditationApp.swift; sourceTree = "<group>"; };
+		D53C20C52873684B007930C5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D53C20C72873684B007930C5 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		D53C20C92873684B007930C5 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		D53C20CB2873684B007930C5 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		D53C20CD2873684B007930C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D53C20D02873684B007930C5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D53C20D22873684B007930C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D53C20D32873684B007930C5 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D53C20A228736849007930C5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D53C20BB2873684B007930C5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D53C209C28736849007930C5 = {
+			isa = PBXGroup;
+			children = (
+				D53C20A728736849007930C5 /* Just Meditation */,
+				D53C20B72873684A007930C5 /* Just Meditation WatchKit App */,
+				D53C20C22873684B007930C5 /* Just Meditation WatchKit Extension */,
+				D53C20A628736849007930C5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D53C20A628736849007930C5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D53C20A528736849007930C5 /* Just Meditation.app */,
+				D53C20B32873684A007930C5 /* Just Meditation WatchKit App.app */,
+				D53C20BE2873684B007930C5 /* Just Meditation WatchKit Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D53C20A728736849007930C5 /* Just Meditation */ = {
+			isa = PBXGroup;
+			children = (
+				D53C20A828736849007930C5 /* Just_MeditationApp.swift */,
+				D53C20AA28736849007930C5 /* ContentView.swift */,
+				D53C20AC2873684A007930C5 /* Assets.xcassets */,
+				D53C20AE2873684A007930C5 /* Preview Content */,
+			);
+			path = "Just Meditation";
+			sourceTree = "<group>";
+		};
+		D53C20AE2873684A007930C5 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				D53C20AF2873684A007930C5 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D53C20B72873684A007930C5 /* Just Meditation WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				D53C20B82873684A007930C5 /* Assets.xcassets */,
+			);
+			path = "Just Meditation WatchKit App";
+			sourceTree = "<group>";
+		};
+		D53C20C22873684B007930C5 /* Just Meditation WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D53C20C32873684B007930C5 /* Just_MeditationApp.swift */,
+				D53C20C52873684B007930C5 /* ContentView.swift */,
+				D53C20C72873684B007930C5 /* NotificationController.swift */,
+				D53C20C92873684B007930C5 /* NotificationView.swift */,
+				D53C20CB2873684B007930C5 /* ComplicationController.swift */,
+				D53C20CD2873684B007930C5 /* Assets.xcassets */,
+				D53C20D22873684B007930C5 /* Info.plist */,
+				D53C20D32873684B007930C5 /* PushNotificationPayload.apns */,
+				D53C20CF2873684B007930C5 /* Preview Content */,
+			);
+			path = "Just Meditation WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		D53C20CF2873684B007930C5 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				D53C20D02873684B007930C5 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D53C20A428736849007930C5 /* Just Meditation */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D53C20DE2873684B007930C5 /* Build configuration list for PBXNativeTarget "Just Meditation" */;
+			buildPhases = (
+				D53C20A128736849007930C5 /* Sources */,
+				D53C20A228736849007930C5 /* Frameworks */,
+				D53C20A328736849007930C5 /* Resources */,
+				D53C20DD2873684B007930C5 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D53C20B62873684A007930C5 /* PBXTargetDependency */,
+			);
+			name = "Just Meditation";
+			productName = "Just Meditation";
+			productReference = D53C20A528736849007930C5 /* Just Meditation.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D53C20B22873684A007930C5 /* Just Meditation WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D53C20DA2873684B007930C5 /* Build configuration list for PBXNativeTarget "Just Meditation WatchKit App" */;
+			buildPhases = (
+				D53C20B12873684A007930C5 /* Resources */,
+				D53C20D92873684B007930C5 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D53C20C12873684B007930C5 /* PBXTargetDependency */,
+			);
+			name = "Just Meditation WatchKit App";
+			productName = "Just Meditation WatchKit App";
+			productReference = D53C20B32873684A007930C5 /* Just Meditation WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		D53C20BD2873684B007930C5 /* Just Meditation WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D53C20D62873684B007930C5 /* Build configuration list for PBXNativeTarget "Just Meditation WatchKit Extension" */;
+			buildPhases = (
+				D53C20BA2873684B007930C5 /* Sources */,
+				D53C20BB2873684B007930C5 /* Frameworks */,
+				D53C20BC2873684B007930C5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Just Meditation WatchKit Extension";
+			productName = "Just Meditation WatchKit Extension";
+			productReference = D53C20BE2873684B007930C5 /* Just Meditation WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D53C209D28736849007930C5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1340;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					D53C20A428736849007930C5 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+					D53C20B22873684A007930C5 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+					D53C20BD2873684B007930C5 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+				};
+			};
+			buildConfigurationList = D53C20A028736849007930C5 /* Build configuration list for PBXProject "Just Meditation" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D53C209C28736849007930C5;
+			productRefGroup = D53C20A628736849007930C5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D53C20A428736849007930C5 /* Just Meditation */,
+				D53C20B22873684A007930C5 /* Just Meditation WatchKit App */,
+				D53C20BD2873684B007930C5 /* Just Meditation WatchKit Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D53C20A328736849007930C5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D53C20B02873684A007930C5 /* Preview Assets.xcassets in Resources */,
+				D53C20AD2873684A007930C5 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D53C20B12873684A007930C5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D53C20B92873684A007930C5 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D53C20BC2873684B007930C5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D53C20D12873684B007930C5 /* Preview Assets.xcassets in Resources */,
+				D53C20CE2873684B007930C5 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D53C20A128736849007930C5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D53C20AB28736849007930C5 /* ContentView.swift in Sources */,
+				D53C20A928736849007930C5 /* Just_MeditationApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D53C20BA2873684B007930C5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D53C20C82873684B007930C5 /* NotificationController.swift in Sources */,
+				D53C20C62873684B007930C5 /* ContentView.swift in Sources */,
+				D53C20CC2873684B007930C5 /* ComplicationController.swift in Sources */,
+				D53C20C42873684B007930C5 /* Just_MeditationApp.swift in Sources */,
+				D53C20CA2873684B007930C5 /* NotificationView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D53C20B62873684A007930C5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D53C20B22873684A007930C5 /* Just Meditation WatchKit App */;
+			targetProxy = D53C20B52873684A007930C5 /* PBXContainerItemProxy */;
+		};
+		D53C20C12873684B007930C5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D53C20BD2873684B007930C5 /* Just Meditation WatchKit Extension */;
+			targetProxy = D53C20C02873684B007930C5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		D53C20D42873684B007930C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D53C20D52873684B007930C5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		D53C20D72873684B007930C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Just Meditation WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = YLK778Z528;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Just Meditation WatchKit Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Just Meditation WatchKit Extension";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "shroominic.Just-Meditation.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+			};
+			name = Debug;
+		};
+		D53C20D82873684B007930C5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Just Meditation WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = YLK778Z528;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Just Meditation WatchKit Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Just Meditation WatchKit Extension";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "shroominic.Just-Meditation.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+			};
+			name = Release;
+		};
+		D53C20DB2873684B007930C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YLK778Z528;
+				GENERATE_INFOPLIST_FILE = YES;
+				IBSC_MODULE = Just_Meditation_WatchKit_Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = "Just Meditation WatchKit App";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "shroominic.Just-Meditation";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "shroominic.Just-Meditation.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+			};
+			name = Debug;
+		};
+		D53C20DC2873684B007930C5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YLK778Z528;
+				GENERATE_INFOPLIST_FILE = YES;
+				IBSC_MODULE = Just_Meditation_WatchKit_Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = "Just Meditation WatchKit App";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "shroominic.Just-Meditation";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "shroominic.Just-Meditation.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+			};
+			name = Release;
+		};
+		D53C20DF2873684B007930C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Just Meditation/Preview Content\"";
+				DEVELOPMENT_TEAM = YLK778Z528;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "shroominic.Just-Meditation";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D53C20E02873684B007930C5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Just Meditation/Preview Content\"";
+				DEVELOPMENT_TEAM = YLK778Z528;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "shroominic.Just-Meditation";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D53C20A028736849007930C5 /* Build configuration list for PBXProject "Just Meditation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D53C20D42873684B007930C5 /* Debug */,
+				D53C20D52873684B007930C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D53C20D62873684B007930C5 /* Build configuration list for PBXNativeTarget "Just Meditation WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D53C20D72873684B007930C5 /* Debug */,
+				D53C20D82873684B007930C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D53C20DA2873684B007930C5 /* Build configuration list for PBXNativeTarget "Just Meditation WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D53C20DB2873684B007930C5 /* Debug */,
+				D53C20DC2873684B007930C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D53C20DE2873684B007930C5 /* Build configuration list for PBXNativeTarget "Just Meditation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D53C20DF2873684B007930C5 /* Debug */,
+				D53C20E02873684B007930C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D53C209D28736849007930C5 /* Project object */;
+}
