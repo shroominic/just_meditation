@@ -19,7 +19,9 @@ struct HomeView: View {
     
     var body: some View {
         VStack {
+            // TITLE
             just_meditation(mode: "just")
+            // PICK A DURATION
             HStack {
                 Text("DURATION")
                     .font(.system(size: 24, weight: .ultraLight, design: .monospaced))
@@ -62,8 +64,9 @@ struct HomeView: View {
             .padding(.vertical, 10)
             .background(Color.init(white: 0.03))
             .cornerRadius(12)
+            // BUTTONS
             HomeButtonRow(namespace: namespace, showTimerView: $showTimerView, activeTimer: $activeTimer, duration: $duration)
-                .frame(maxHeight: .infinity, alignment: .bottom)
+                
         }
     }
     
@@ -72,122 +75,49 @@ struct HomeView: View {
 private struct HomeButtonRow: View {
     let namespace: Namespace.ID
     
-    @State var showSettings: Bool = false
     @State var showInfo: Bool = false
     @Binding var showTimerView: Bool
     @Binding var activeTimer: ActiveTimer
     @Binding var duration: Int
     
     var body: some View {
-        if showSettings {
-            HStack(alignment: .top) {
-                if showInfo {
-                    InfoView()
-                } else {
-                    SettingsView()
-                        .padding()
-                }
-                VStack {
-                    Button(action: {
-                        withAnimation {
-                            showSettings.toggle()
-                            showInfo = false
-                        }
-                    }){
-                        Image(systemName: "gear.badge.xmark")
-                            .padding(10)
-                            .foregroundColor(.white)
-                            .matchedGeometryEffect(id: "settingsgear", in: namespace)
-                    }
-                    Button(action: {
-                        withAnimation {
-                            showInfo.toggle()
-                        }
-                    }) {
-                        Image(systemName: showInfo ? "info.circle.fill": "info.circle")
-                            .padding(.horizontal)
-                            .padding(.vertical, 5)
-                            .foregroundColor(.white)
-                    }
-                }
-                
-            }
-            .overlay(
-                RoundedRectangle(cornerRadius: 12)
-                    .stroke(.white, lineWidth: 1)
-                    .matchedGeometryEffect(id: "settings", in: namespace)
-            )
-            .padding()
-            
-        } else {
-            HStack {
-                Spacer()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                Button(action: {
-                    activeTimer = ActiveTimer(durationInMinutes: duration)
-                    withAnimation {
-                        showTimerView.toggle()
-                    }
-                }){
-                    Image(systemName: "play")
-                        .frame(width: 20, height: 20)
-                        .padding(20)
-                        .foregroundColor(.white)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(.white, lineWidth: 1)
-                                .matchedGeometryEffect(id: "buttonCase", in: namespace)
-                        )
-                        .offset(x: 4)
-                }
-                Button(action: {
-                    withAnimation {
-                        showSettings.toggle()
-                    }
-                }){
-                    Image(systemName: "gear")
-                        .padding(10)
-                        .foregroundColor(.white)
-                        .matchedGeometryEffect(id: "settingsgear", in: namespace)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(.white, lineWidth: 1)
-                                .matchedGeometryEffect(id: "settings", in: namespace)
-                        )
-                        .padding(.horizontal)
-                }
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                
-            }
+        ZStack {
+            PlayButton(namespace: namespace, playButtonAction: playButtonAction)
+                .frame(maxHeight: .infinity, alignment: .bottom)
+            SettingsView(namespace: namespace)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
+        }
+        
+    }
+    
+    func playButtonAction() {
+        activeTimer = ActiveTimer(durationInMinutes: duration)
+        withAnimation {
+            showTimerView.toggle()
         }
     }
+    
 }
 
-private struct InfoView: View {
-    
-    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+struct PlayButton: View {
+    var namespace: Namespace.ID
+    var playButtonAction: () -> Void
     
     var body: some View {
-        VStack {
-            Text("""
-            Thanks for using just_meditation!
-            I hope I could help you to clear the mind :D
-            
-            If you want to support me just leave a rating in the AppStore.
-            
-            socials: [linktr.ee/shroominic](https://linktr.ee/shroominic)
-            """)
-                .font(.system(size: 13, weight: .light, design: .monospaced))
-            Text("v\(appVersion ?? "no_version_found")")
-                .font(.system(size: 8, design: .monospaced))
-                .padding(.top, 5)
-                .foregroundColor(.init(white: 0.3))
-        }
-        .padding()
+        Button(action: playButtonAction){
+            Image(systemName: "play")
+                .frame(width: 20, height: 20)
+                .padding(20)
+                .foregroundColor(.white)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(.white, lineWidth: 1)
+                        .matchedGeometryEffect(id: "buttonCase", in: namespace)
+                )
     }
-    
+        .frame(maxHeight: .infinity, alignment: .bottom)
+    }
 }
-
 
 struct HomeView_Previews: PreviewProvider {
     @Namespace static var namespace
