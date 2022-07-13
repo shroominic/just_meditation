@@ -11,7 +11,8 @@ import SwiftUI
 struct Just_MeditationApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
+                .preferredColorScheme(.dark)
         }
     }
 }
