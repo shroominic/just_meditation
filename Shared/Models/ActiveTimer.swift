@@ -13,14 +13,10 @@ import AudioToolbox
 var player: AVAudioPlayer!
 let formatter = DateComponentsFormatter()
 
-
 func playSound(sound_name: String) {
     let url = Bundle.main.url(forResource: sound_name, withExtension: "wav")
     
-    guard url != nil else {
-        print("error inside guard")
-        return
-    }
+    guard url != nil else { return }
     do {
         player = try AVAudioPlayer(contentsOf: url!)
         player?.play()
@@ -37,10 +33,16 @@ class ActiveTimer: ObservableObject {
     var endDate: Date
     
     func alreadyMeditated(dateNow: Date) -> String {
+        let formatter = DateComponentsFormatter()
+
+        formatter.unitsStyle = .abbreviated
+        formatter.zeroFormattingBehavior = .dropAll
+        formatter.allowedUnits = [.day, .hour, .minute, .second]
         return formatter.string(from: startDate.distance(to: dateNow))!
     }
     
     func toString(dateNow: Date) -> String {
+        
         return formatter.string(from: dateNow.distance(to: self.endDate))!
     }
 
@@ -58,6 +60,8 @@ class ActiveTimer: ObservableObject {
     }
     
     func finish(soundsEnabled: Bool) {
+        // update end date
+        self.endDate = Date()
         // play some finish vibration
         AudioServicesPlaySystemSound(1521)
         if soundsEnabled {
