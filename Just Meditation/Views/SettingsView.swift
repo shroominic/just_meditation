@@ -6,15 +6,17 @@
 //
 
 import SwiftUI
-
+import HealthKit
 
 
 struct SettingsView: View {
     @EnvironmentObject var settings: Settings
     var namespace: Namespace.ID
     
+    
     @State var showMore: Bool = false
     @State var showInfoView: Bool = false
+    @State var showNotificationAlert: Bool = false
     
     var body: some View {
         ZStack {
@@ -43,37 +45,43 @@ struct SettingsView: View {
                         SettingsItem(
                             label: "Safe Data",
                             buttonAction: {
-                                if settings.healthKitActivated {
+                                if settings.healthSyncEnabled {
                                     withAnimation {
-                                        settings.healthKitActivated.toggle()
+                                        settings.healthSyncEnabled.toggle()
+                                        settings.saveData()
                                     }
                                 } else {
                                     withAnimation {
-                                        settings.activateHealthKit()
+                                        activateHealthKit()
                                     }
                                 }},
                             systemIcons: ("arrow.up.heart.fill", "heart.slash.fill"),
-                            switchVar: $settings.healthKitActivated)
+                            switchVar: $settings.healthSyncEnabled)
                         // SOUNDS BUTTON
                         SettingsItem(
                             label: "Sounds",
                             buttonAction: {
                                 withAnimation {
-                                    settings.enableSounds.toggle()
+                                    settings.soundsEnabled.toggle()
+                                    settings.saveData()
                                 }
                             },
                             systemIcons: ("speaker.wave.2.fill", "speaker.slash.fill"),
-                            switchVar: $settings.enableSounds)
+                            switchVar: $settings.soundsEnabled)
                         // NOTIFICATIONS BUTTON
                         SettingsItem(
                             label: "Notifications",
                             buttonAction: {
                                 withAnimation {
-                                    settings.enableNotification.toggle()
+                                    toggleNotifications()
+                                    settings.saveData()
                                 }
                             },
                             systemIcons: ("bell.badge.fill", "bell.slash.fill"),
-                            switchVar: $settings.enableNotification)
+                            switchVar: $settings.notificationEnabled)
+                        .alert("Please activate your notifications first.", isPresented: $showNotificationAlert) {
+                                    Button("OK", role: .cancel) { }
+                                }
 
                         // SHOW INFO BUTTON
                         Button(action: {
@@ -85,7 +93,6 @@ struct SettingsView: View {
                                 .padding(.vertical, 5)
                                 .foregroundColor(showInfoView ? .white : .gray)
                         }
-                        
                     }
                 }
             } else {
@@ -102,31 +109,90 @@ struct SettingsView: View {
                         .foregroundColor(.gray)
                 }
             }
-
-                
-            
         }
         .padding(5)
         .background(Color.init(white: 0.1))
         .cornerRadius(8)
-//        .background(.black)
-//        .overlay(
-//            RoundedRectangle(cornerRadius: 12)
-//                .stroke(.white, lineWidth: 1)
-//                .matchedGeometryEffect(id: "settings", in: namespace)
-//        )
         .padding(.horizontal)
         .padding(.vertical, 8)
         .background(.black)
-        
     }
     
-    enum Views {
-        case hidden
-        case icons
-        case settings
-        case info
+    func toggleNotifications() {
+        UNUserNotificationCenter.current().getNotificationSettings(completionHandler: { permission in
+            switch permission.authorizationStatus  {
+            // all permissions authorized
+            case .authorized:
+                print("authorized")
+                DispatchQueue.main.async {
+                    settings.notificationEnabled.toggle()
+                    settings.saveData()
+                }
+            // The app isn't authorized to schedule or receive notifications.
+            case .denied:
+                print("User denied notification permission")
+                DispatchQueue.main.async {
+                    settings.notificationEnabled = false
+                    settings.saveData()
+                    showNotificationAlert.toggle()
+                }
+            // notification permission haven't been asked yet
+            case .notDetermined:
+                UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+                    if success {
+                        print("All set!")
+                        DispatchQueue.main.async {
+                            settings.notificationEnabled = true
+                            settings.saveData()
+                        }
+                    } else if let error = error {
+                        print(error.localizedDescription)
+                    }
+                }
+            case .provisional:
+                // @available(iOS 12.0, *)
+                print("The application is authorized to post non-interruptive user notifications.")
+            case .ephemeral:
+                // @available(iOS 14.0, *)
+                print("The application is temporarily authorized to post notifications. Only available to app clips.")
+            @unknown default:
+                print("Unknow Status")
+            }
+        })
     }
+    
+    func activateHealthKit() {
+        let healthStore = HKHealthStore()
+        
+        let typestoRead = Set([
+            HKObjectType.categoryType(forIdentifier: HKCategoryTypeIdentifier.mindfulSession)!
+        ])
+        
+        let typestoShare = Set([
+            HKObjectType.categoryType(forIdentifier: HKCategoryTypeIdentifier.mindfulSession)!
+        ])
+        
+        healthStore.requestAuthorization(toShare: typestoShare, read: typestoRead) { (success, error) -> Void in
+            if success == false {
+                DispatchQueue.main.async {
+                    settings.healthSyncEnabled = false
+                    settings.saveData()
+                }
+                print("solve this error\(String(describing: error))")
+                NSLog(" Display not allowed")
+            }
+            if success == true {
+                DispatchQueue.main.async {
+                    settings.healthSyncEnabled = true
+                    settings.saveData()
+                }
+                print("dont worry everything is good \(success)")
+                NSLog(" Integrated SuccessFully")
+            }
+        }
+    }
+    
+    
 }
 
 private struct SettingsItem: View {
@@ -159,8 +225,8 @@ private struct InfoView: View {
         HStack(alignment: .top) {
             VStack {
                 Text("""
-                    Thanks for using just_meditation!
-                    I hope I could help you to clear the mind :D
+                    Thanks for using just meditation
+                    and I hope it helped you become sharp and clear again!
                     
                     If you want to support me just leave a rating in the AppStore.
                     

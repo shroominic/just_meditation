@@ -7,6 +7,7 @@
 
 import SwiftUI
 import HealthKit
+import UserNotifications
 
 
 struct TimerView: View {
@@ -48,23 +49,27 @@ struct TimerView: View {
             // every second tick
             .onReceive(timer) { time in
                 if Date() >= activeTimer.endDate {
+                    activeTimer.finish(soundsEnabled: settings.soundsEnabled)
                     timerFinished = true
                 }
                 else if timerRunning {
                     dateNow = Date()
                 } else {
-                    activeTimer.endDate = activeTimer.endDate + 1
+                    activeTimer.startDate += 1
+                    activeTimer.endDate += 1
+                    updateNotification()
                 }
                 
             }
             // when timer starts
             .onAppear() {
-                activeTimer.onStart(soundsEnabled: settings.enableSounds)
+                activeTimer.onStart(soundsEnabled: settings.soundsEnabled)
+                updateNotification()
             }
         } else {
             VStack {
                 just_meditation(mode: "meditation")
-                Text("time meditated: \(activeTimer.alreadyMeditated(dateNow: Date()))")
+                Text("You completed \(activeTimer.alreadyMeditated(dateNow: activeTimer.endDate - 1))")
                 Spacer().frame(maxHeight: .infinity)
                 Button(action: finishTimer) {
                     Text("FINISH")
@@ -84,13 +89,68 @@ struct TimerView: View {
     
     func finishTimer() {
         withAnimation {
-            showTimer.toggle()
+            showTimer.toggle() // ??
             timerFinished.toggle()
         }
         // update end date
         activeTimer.endDate = Date()
         // safe mindful minutes
-        settings.safeMindfulMinutes(startDate: activeTimer.startDate, endDate: activeTimer.endDate)
+        safeMindfulMinutes(startDate: activeTimer.startDate, endDate: activeTimer.endDate)
+    }
+    
+    func clearNotifications() {
+        // clear notifications
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+    }
+    
+    func updateNotification() {
+        if settings.notificationEnabled {
+            self.clearNotifications()
+        
+            let content = UNMutableNotificationContent()
+            content.title = "Meditation Finished"
+            content.sound = UNNotificationSound(named:UNNotificationSoundName(rawValue: "tibetan_gong_finish.wav"))
+
+            // show this notification five seconds from now
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: Date().distance(to: activeTimer.endDate), repeats: false)
+
+            // choose a random identifier
+            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+
+            // add our notification request
+            UNUserNotificationCenter.current().add(request)
+        }
+    }
+    
+    func safeMindfulMinutes(startDate: Date, endDate: Date) {
+        let healthStore = HKHealthStore()
+        guard startDate.distance(to: endDate).isLess(than: 1) else { return } // check if this works
+        
+        if settings.healthSyncEnabled {
+            // alarmTime and endTime are NSDate objects
+            if let mindfulType = HKObjectType.categoryType(forIdentifier: .mindfulSession) {
+                // we create our new object we want to push in Health app
+                let mindfullSample = HKCategorySample(type:mindfulType, value: 0, start: startDate, end: endDate)
+                
+                // at the end, we save it
+                healthStore.save(mindfullSample, withCompletion: { (success, error) -> Void in
+                    
+                    if error != nil {
+                        print("there is some error")
+                        return
+                    }
+                    
+                    if success {
+                        print("My new data was saved in HealthKit")
+                    } else {
+                        print("Safing of data not successful")
+                    }
+                })
+            }
+        } else {
+            print("apple health deactivated")
+        }
     }
     
 }
@@ -144,12 +204,13 @@ private struct TimerButtonRow: View {
         } else {
             HStack {
                 Button(action: {
-                    withAnimation { timerRunning.toggle() }
+                    withAnimation {
+                        timerRunning.toggle()
+                    }
                 }){
                     Image(systemName: "pause")
                         .frame(width: 20, height: 20)
                         .padding(20)
-                        
                 }
                 .overlay(
                     RoundedRectangle(cornerRadius: 12)
@@ -163,7 +224,8 @@ private struct TimerButtonRow: View {
     }
     
     func finishTimer() {
-        activeTimer.finish(soundsEnabled: settings.enableSounds)
+        activeTimer.finish(soundsEnabled: false)
+        
         withAnimation {
             timerFinished = true
         }

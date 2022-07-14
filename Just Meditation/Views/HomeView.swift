@@ -95,6 +95,8 @@ private struct HomeButtonRow: View {
         withAnimation {
             showTimerView.toggle()
         }
+        let impact = UIImpactFeedbackGenerator(style: .heavy)
+        impact.impactOccurred()
     }
     
 }

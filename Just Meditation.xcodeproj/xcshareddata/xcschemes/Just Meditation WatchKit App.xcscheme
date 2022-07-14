@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D53C20B22873684A007930C5"
-               BuildableName = "Just Meditation WatchKit App.app"
+               BuildableName = "Just Meditation.app"
                BlueprintName = "Just Meditation WatchKit App"
                ReferencedContainer = "container:Just Meditation.xcodeproj">
             </BuildableReference>
@@ -59,7 +59,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D53C20B22873684A007930C5"
-            BuildableName = "Just Meditation WatchKit App.app"
+            BuildableName = "Just Meditation.app"
             BlueprintName = "Just Meditation WatchKit App"
             ReferencedContainer = "container:Just Meditation.xcodeproj">
          </BuildableReference>
@@ -76,7 +76,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D53C20B22873684A007930C5"
-            BuildableName = "Just Meditation WatchKit App.app"
+            BuildableName = "Just Meditation.app"
             BlueprintName = "Just Meditation WatchKit App"
             ReferencedContainer = "container:Just Meditation.xcodeproj">
          </BuildableReference>
