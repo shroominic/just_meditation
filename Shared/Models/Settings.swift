@@ -7,6 +7,8 @@
 
 import Foundation
 import HealthKit
+import UserNotifications
+import SwiftUI
 
 class Settings: ObservableObject {
     let healthStore = HKHealthStore()
@@ -14,29 +16,6 @@ class Settings: ObservableObject {
     @Published var enableSounds: Bool = false
     @Published var healthKitActivated: Bool = false
     @Published var enableNotification: Bool = false
-    
-    func activateHealthKit() {
-        let typestoRead = Set([
-            HKObjectType.categoryType(forIdentifier: HKCategoryTypeIdentifier.mindfulSession)!
-        ])
-        
-        let typestoShare = Set([
-            HKObjectType.categoryType(forIdentifier: HKCategoryTypeIdentifier.mindfulSession)!
-        ])
-        
-        self.healthStore.requestAuthorization(toShare: typestoShare, read: typestoRead) { (success, error) -> Void in
-            if success == false {
-                self.healthKitActivated = false
-                print("solve this error\(String(describing: error))")
-                NSLog(" Display not allowed")
-            }
-            if success == true {
-                self.healthKitActivated = true
-                print("dont worry everything is good \(success)")
-                NSLog(" Integrated SuccessFully")
-            }
-        }
-    }
     
     func safeMindfulMinutes(startDate: Date, endDate: Date) {
         if healthKitActivated {

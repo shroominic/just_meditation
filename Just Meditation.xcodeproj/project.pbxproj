@@ -14,11 +14,13 @@
 		D514BC152879C828000D7C57 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D514BC142879C828000D7C57 /* MainView.swift */; };
 		D514BC172879CB93000D7C57 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D514BC162879CB93000D7C57 /* Settings.swift */; };
 		D514BC192879CFAF000D7C57 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D514BC182879CFAF000D7C57 /* SettingsView.swift */; };
+		D520698428806642001B26ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D53C20AC2873684A007930C5 /* Assets.xcassets */; };
+		D52069862880664F001B26ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D53C20AC2873684A007930C5 /* Assets.xcassets */; };
+		D520698728806650001B26ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D53C20AC2873684A007930C5 /* Assets.xcassets */; };
 		D53C20A928736849007930C5 /* Just_MeditationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53C20A828736849007930C5 /* Just_MeditationApp.swift */; };
 		D53C20AB28736849007930C5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53C20AA28736849007930C5 /* HomeView.swift */; };
-		D53C20AD2873684A007930C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D53C20AC2873684A007930C5 /* Assets.xcassets */; };
 		D53C20B02873684A007930C5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D53C20AF2873684A007930C5 /* Preview Assets.xcassets */; };
-		D53C20B42873684A007930C5 /* Just Meditation WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D53C20B32873684A007930C5 /* Just Meditation WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D53C20B42873684A007930C5 /* Just Meditation.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D53C20B32873684A007930C5 /* Just Meditation.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D53C20B92873684A007930C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D53C20B82873684A007930C5 /* Assets.xcassets */; };
 		D53C20BF2873684B007930C5 /* Just Meditation WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D53C20BE2873684B007930C5 /* Just Meditation WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D53C20C42873684B007930C5 /* Just_MeditationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53C20C32873684B007930C5 /* Just_MeditationApp.swift */; };
@@ -69,7 +71,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				D53C20B42873684A007930C5 /* Just Meditation WatchKit App.app in Embed Watch Content */,
+				D53C20B42873684A007930C5 /* Just Meditation.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -92,7 +94,7 @@
 		D53C20AA28736849007930C5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		D53C20AC2873684A007930C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D53C20AF2873684A007930C5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		D53C20B32873684A007930C5 /* Just Meditation WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Just Meditation WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D53C20B32873684A007930C5 /* Just Meditation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Just Meditation.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D53C20B82873684A007930C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D53C20BE2873684B007930C5 /* Just Meditation WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Just Meditation WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D53C20C32873684B007930C5 /* Just_MeditationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Just_MeditationApp.swift; sourceTree = "<group>"; };
@@ -176,7 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				D53C20A528736849007930C5 /* Just Meditation.app */,
-				D53C20B32873684A007930C5 /* Just Meditation WatchKit App.app */,
+				D53C20B32873684A007930C5 /* Just Meditation.app */,
 				D53C20BE2873684B007930C5 /* Just Meditation WatchKit Extension.appex */,
 			);
 			name = Products;
@@ -291,7 +293,7 @@
 			);
 			name = "Just Meditation WatchKit App";
 			productName = "Just Meditation WatchKit App";
-			productReference = D53C20B32873684A007930C5 /* Just Meditation WatchKit App.app */;
+			productReference = D53C20B32873684A007930C5 /* Just Meditation.app */;
 			productType = "com.apple.product-type.application.watchapp2";
 		};
 		D53C20BD2873684B007930C5 /* Just Meditation WatchKit Extension */ = {
@@ -359,8 +361,8 @@
 			files = (
 				D5D3F0A5287CC321002EC9FF /* tibetan_gong_finish.wav in Resources */,
 				D53C20B02873684A007930C5 /* Preview Assets.xcassets in Resources */,
+				D52069862880664F001B26ED /* Assets.xcassets in Resources */,
 				D5D3F0A4287CC321002EC9FF /* tibetan_gong_start.wav in Resources */,
-				D53C20AD2873684A007930C5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,6 +370,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D520698428806642001B26ED /* Assets.xcassets in Resources */,
 				D53C20B92873684A007930C5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,6 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D53C20D12873684B007930C5 /* Preview Assets.xcassets in Resources */,
+				D520698728806650001B26ED /* Assets.xcassets in Resources */,
 				D53C20CE2873684B007930C5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -616,12 +620,11 @@
 				DEVELOPMENT_TEAM = YLK778Z528;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = Just_Meditation_WatchKit_Extension;
-				INFOPLIST_KEY_CFBundleDisplayName = "Just Meditation WatchKit App";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = shroominic.justmeditation;
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = shroominic.justmeditation.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Just Meditation";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -643,12 +646,11 @@
 				DEVELOPMENT_TEAM = YLK778Z528;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = Just_Meditation_WatchKit_Extension;
-				INFOPLIST_KEY_CFBundleDisplayName = "Just Meditation WatchKit App";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = shroominic.justmeditation;
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = shroominic.justmeditation.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Just Meditation";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;

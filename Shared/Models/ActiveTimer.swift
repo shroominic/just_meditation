@@ -46,7 +46,7 @@ class ActiveTimer: ObservableObject {
 
     init(durationInMinutes: Int = 7) {
         self.startDate = Date()
-        self.endDate = Date() + TimeInterval(60*durationInMinutes + 2)
+        self.endDate = Date() + TimeInterval(60*durationInMinutes + 1)
     }
     
     func onStart(soundsEnabled: Bool) {
