@@ -9,5 +9,9 @@
 	</dict>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleDarkContent</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Track Your Meditation Progress inside Apple Health App</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Track Your Meditation Progress</string>
 </dict>
 </plist>
