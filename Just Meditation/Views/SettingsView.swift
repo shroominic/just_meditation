@@ -13,6 +13,7 @@ struct SettingsView: View {
     @EnvironmentObject var settings: Settings
     var namespace: Namespace.ID
     
+    
     @State var showMore: Bool = false
     @State var showInfoView: Bool = false
     @State var showNotificationAlert: Bool = false
@@ -44,9 +45,10 @@ struct SettingsView: View {
                         SettingsItem(
                             label: "Safe Data",
                             buttonAction: {
-                                if settings.healthKitActivated {
+                                if settings.healthSyncEnabled {
                                     withAnimation {
-                                        settings.healthKitActivated.toggle()
+                                        settings.healthSyncEnabled.toggle()
+                                        settings.saveData()
                                     }
                                 } else {
                                     withAnimation {
@@ -54,27 +56,29 @@ struct SettingsView: View {
                                     }
                                 }},
                             systemIcons: ("arrow.up.heart.fill", "heart.slash.fill"),
-                            switchVar: $settings.healthKitActivated)
+                            switchVar: $settings.healthSyncEnabled)
                         // SOUNDS BUTTON
                         SettingsItem(
                             label: "Sounds",
                             buttonAction: {
                                 withAnimation {
-                                    settings.enableSounds.toggle()
+                                    settings.soundsEnabled.toggle()
+                                    settings.saveData()
                                 }
                             },
                             systemIcons: ("speaker.wave.2.fill", "speaker.slash.fill"),
-                            switchVar: $settings.enableSounds)
+                            switchVar: $settings.soundsEnabled)
                         // NOTIFICATIONS BUTTON
                         SettingsItem(
                             label: "Notifications",
                             buttonAction: {
                                 withAnimation {
                                     toggleNotifications()
+                                    settings.saveData()
                                 }
                             },
                             systemIcons: ("bell.badge.fill", "bell.slash.fill"),
-                            switchVar: $settings.enableNotification)
+                            switchVar: $settings.notificationEnabled)
                         .alert("Please activate your notifications first.", isPresented: $showNotificationAlert) {
                                     Button("OK", role: .cancel) { }
                                 }
@@ -121,13 +125,15 @@ struct SettingsView: View {
             case .authorized:
                 print("authorized")
                 DispatchQueue.main.async {
-                    settings.enableNotification.toggle()
+                    settings.notificationEnabled.toggle()
+                    settings.saveData()
                 }
             // The app isn't authorized to schedule or receive notifications.
             case .denied:
                 print("User denied notification permission")
                 DispatchQueue.main.async {
-                    settings.enableNotification = false
+                    settings.notificationEnabled = false
+                    settings.saveData()
                     showNotificationAlert.toggle()
                 }
             // notification permission haven't been asked yet
@@ -136,7 +142,8 @@ struct SettingsView: View {
                     if success {
                         print("All set!")
                         DispatchQueue.main.async {
-                            settings.enableNotification = true
+                            settings.notificationEnabled = true
+                            settings.saveData()
                         }
                     } else if let error = error {
                         print(error.localizedDescription)
@@ -155,6 +162,8 @@ struct SettingsView: View {
     }
     
     func activateHealthKit() {
+        let healthStore = HKHealthStore()
+        
         let typestoRead = Set([
             HKObjectType.categoryType(forIdentifier: HKCategoryTypeIdentifier.mindfulSession)!
         ])
@@ -163,23 +172,27 @@ struct SettingsView: View {
             HKObjectType.categoryType(forIdentifier: HKCategoryTypeIdentifier.mindfulSession)!
         ])
         
-        settings.healthStore.requestAuthorization(toShare: typestoShare, read: typestoRead) { (success, error) -> Void in
+        healthStore.requestAuthorization(toShare: typestoShare, read: typestoRead) { (success, error) -> Void in
             if success == false {
                 DispatchQueue.main.async {
-                    settings.healthKitActivated = false
+                    settings.healthSyncEnabled = false
+                    settings.saveData()
                 }
                 print("solve this error\(String(describing: error))")
                 NSLog(" Display not allowed")
             }
             if success == true {
                 DispatchQueue.main.async {
-                    settings.healthKitActivated = true
+                    settings.healthSyncEnabled = true
+                    settings.saveData()
                 }
                 print("dont worry everything is good \(success)")
                 NSLog(" Integrated SuccessFully")
             }
         }
     }
+    
+    
 }
 
 private struct SettingsItem: View {
