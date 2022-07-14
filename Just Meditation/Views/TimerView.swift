@@ -163,7 +163,7 @@ private struct TimerButtonRow: View {
     }
     
     func finishTimer() {
-        activeTimer.finish(soundsEnabled: settings.enableSounds)
+        activeTimer.finish(soundsEnabled: false)
         withAnimation {
             timerFinished = true
         }
