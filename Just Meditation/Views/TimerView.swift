@@ -8,6 +8,7 @@
 import SwiftUI
 import HealthKit
 import UserNotifications
+import AudioToolbox
 
 
 struct TimerView: View {
@@ -43,14 +44,13 @@ struct TimerView: View {
                 .onAppear { UIApplication.shared.isIdleTimerDisabled = true }
                 .onDisappear { UIApplication.shared.isIdleTimerDisabled = false }
                 // Buttons
-                TimerButtonRow(namespace, activeTimer: $activeTimer, timerRunning: $timerRunning, timerFinished: $timerFinished)
+                TimerButtonRow(namespace, activeTimer: $activeTimer, timerRunning: $timerRunning, stop_button: stopButton)
                 .frame(maxHeight: .infinity, alignment: .bottom)
             }
             // every second tick
             .onReceive(timer) { time in
                 if Date() >= activeTimer.endDate {
-                    activeTimer.finish(soundsEnabled: settings.soundsEnabled)
-                    timerFinished = true
+                    stopTimer()
                 }
                 else if timerRunning {
                     dateNow = Date()
@@ -71,7 +71,7 @@ struct TimerView: View {
                 just_meditation(mode: "meditation")
                 Text("You completed \(activeTimer.alreadyMeditated(dateNow: activeTimer.endDate - 1))")
                 Spacer().frame(maxHeight: .infinity)
-                Button(action: finishTimer) {
+                Button(action: finishButton) {
                     Text("FINISH")
                         .frame(height: 28)
                         .padding()
@@ -87,15 +87,40 @@ struct TimerView: View {
         }
     }
     
-    func finishTimer() {
-        withAnimation {
-            showTimer.toggle() // ??
-            timerFinished.toggle()
-        }
-        // update end date
-        activeTimer.endDate = Date()
+    func finishButton() {
         // safe mindful minutes
         safeMindfulMinutes(startDate: activeTimer.startDate, endDate: activeTimer.endDate)
+        // screen transition
+        withAnimation {
+            showTimer.toggle()
+            timerFinished.toggle() // really needed??
+        }
+    }
+    
+    func stopButton() {
+        timerFinished = true
+        clearNotifications()
+        // update end date
+        activeTimer.endDate = Date()
+    }
+    
+    func stopTimer() {
+        stopButton()
+        // final haptics and sounds
+        if settings.soundsEnabled {
+            // short haptics and gong
+            AudioServicesPlaySystemSound(1521)
+            playSound(sound_name: "tibetan_gong_finish")
+        } else {
+            // long haptic feedback (silent mode)
+            for i in 1...4 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + Double(i) * 0.5) {
+                    AudioServicesPlaySystemSound(1521)
+                }
+            }
+        }
+        
+        
     }
     
     func clearNotifications() {
@@ -125,34 +150,24 @@ struct TimerView: View {
     
     func safeMindfulMinutes(startDate: Date, endDate: Date) {
         let healthStore = HKHealthStore()
-        guard startDate.distance(to: endDate).isLess(than: 1) else { return } // check if this works
-        
+        if startDate.distance(to: endDate).isLess(than: 60) {
+            print("meditation was less than a minute")
+            return
+        }
         if settings.healthSyncEnabled {
             // alarmTime and endTime are NSDate objects
             if let mindfulType = HKObjectType.categoryType(forIdentifier: .mindfulSession) {
                 // we create our new object we want to push in Health app
                 let mindfullSample = HKCategorySample(type:mindfulType, value: 0, start: startDate, end: endDate)
-                
                 // at the end, we save it
                 healthStore.save(mindfullSample, withCompletion: { (success, error) -> Void in
-                    
-                    if error != nil {
-                        print("there is some error")
-                        return
-                    }
-                    
-                    if success {
-                        print("My new data was saved in HealthKit")
-                    } else {
-                        print("Safing of data not successful")
-                    }
+                    if error != nil { return }
+                    if success { print("new data was saved in HealthKit") }
+                    else { print("saving of data not successful") }
                 })
             }
-        } else {
-            print("apple health deactivated")
-        }
+        } else { print("saving to health is deactivated") }
     }
-    
 }
 
 
@@ -162,13 +177,14 @@ private struct TimerButtonRow: View {
         
     @Binding var activeTimer: ActiveTimer
     @Binding var timerRunning: Bool
-    @Binding var timerFinished: Bool
     
-    init(_ namespace: Namespace.ID, activeTimer: Binding<ActiveTimer>, timerRunning: Binding<Bool>, timerFinished: Binding<Bool>) {
+    var stopButton: () -> Void
+    
+    init(_ namespace: Namespace.ID, activeTimer: Binding<ActiveTimer>, timerRunning: Binding<Bool>, stop_button: @escaping () -> Void) {
         self.namespace = namespace
         self._activeTimer = activeTimer
         self._timerRunning = timerRunning
-        self._timerFinished = timerFinished
+        self.stopButton = stop_button
     }
     
     var body: some View {
@@ -185,7 +201,7 @@ private struct TimerButtonRow: View {
                         .foregroundColor(.white)
                 }
                 .offset(x: 22)
-                Button(action: finishTimer) {
+                Button(action: stopButton) {
                     Image(systemName: "stop")
                         .frame(width: 20, height: 20)
                         .foregroundColor(.red)
@@ -199,8 +215,6 @@ private struct TimerButtonRow: View {
                     .matchedGeometryEffect(id: "buttonCase", in: namespace)
                     .offset(x: 22)
             )
-            
-            
         } else {
             HStack {
                 Button(action: {
@@ -218,19 +232,9 @@ private struct TimerButtonRow: View {
                         .matchedGeometryEffect(id: "buttonCase", in: namespace)
                 )
                 .foregroundColor(.white)
-                
             }
         }
     }
-    
-    func finishTimer() {
-        activeTimer.finish(soundsEnabled: false)
-        
-        withAnimation {
-            timerFinished = true
-        }
-    }
-    
 }
 
 struct TimerView_Previews: PreviewProvider {
