@@ -7,8 +7,7 @@
 
 import Foundation
 import AVFoundation
-import UIKit
-import AudioToolbox
+
 
 var player: AVAudioPlayer!
 let formatter = DateComponentsFormatter()
@@ -58,22 +57,4 @@ class ActiveTimer: ObservableObject {
             playSound(sound_name: "tibetan_gong_start")
         }
     }
-    
-    func finish(soundsEnabled: Bool) {
-        // update end date
-        self.endDate = Date()
-        // play some finish vibration
-        AudioServicesPlaySystemSound(1521)
-        if soundsEnabled {
-            playSound(sound_name: "tibetan_gong_finish")
-        } else {
-            for i in 1...4 {
-                DispatchQueue.main.asyncAfter(deadline: .now() + Double(i) * 0.5) {
-                    AudioServicesPlaySystemSound(1521)
-                }
-            }
-        }
-    }
-    
-    
 }

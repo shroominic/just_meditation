@@ -162,6 +162,13 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		D520698C2881C7C5001B26ED /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		D53C209C28736849007930C5 = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				D53C20A828736849007930C5 /* Just_MeditationApp.swift */,
+				D520698C2881C7C5001B26ED /* ViewModels */,
 				D514BC0C28790D93000D7C57 /* Views */,
 				D514BC0A28787FA6000D7C57 /* Just-Meditation-Info.plist */,
 				D514BC0628787CCD000D7C57 /* Just Meditation.entitlements */,
@@ -328,6 +336,7 @@
 					};
 					D53C20B22873684A007930C5 = {
 						CreatedOnToolsVersion = 13.4.1;
+						LastSwiftMigration = 1340;
 					};
 					D53C20BD2873684B007930C5 = {
 						CreatedOnToolsVersion = 13.4.1;
@@ -547,7 +556,7 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Just Meditation WatchKit Extension/Just Meditation WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Just Meditation WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = YLK778Z528;
 				ENABLE_PREVIEWS = YES;
@@ -555,6 +564,8 @@
 				INFOPLIST_FILE = "Just Meditation WatchKit Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Just Meditation WatchKit Extension";
 				INFOPLIST_KEY_CLKComplicationPrincipalClass = Just_Meditation_WatchKit_Extension.ComplicationController;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Track Your Meditation Progress";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Track Your Meditation Progress inside Apple Health App";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -580,7 +591,7 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Just Meditation WatchKit Extension/Just Meditation WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Just Meditation WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = YLK778Z528;
 				ENABLE_PREVIEWS = YES;
@@ -588,6 +599,8 @@
 				INFOPLIST_FILE = "Just Meditation WatchKit Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Just Meditation WatchKit Extension";
 				INFOPLIST_KEY_CLKComplicationPrincipalClass = Just_Meditation_WatchKit_Extension.ComplicationController;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Track Your Meditation Progress";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Track Your Meditation Progress inside Apple Health App";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -615,19 +628,26 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = YLK778Z528;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = Just_Meditation_WatchKit_Extension;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = shroominic.justmeditation;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = shroominic.justmeditation.watchkitapp;
 				PRODUCT_NAME = "Just Meditation";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 8.5;
@@ -641,13 +661,19 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = YLK778Z528;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = Just_Meditation_WatchKit_Extension;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = shroominic.justmeditation;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = shroominic.justmeditation.watchkitapp;
 				PRODUCT_NAME = "Just Meditation";
@@ -668,13 +694,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Just Meditation/Just Meditation.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Just Meditation/Preview Content\"";
 				DEVELOPMENT_TEAM = YLK778Z528;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Just-Meditation-Info.plist";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "Track Your Meditation Progress inside Apple Health App";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Track Your Meditation Progress";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Track Your Meditation Progress inside Apple Health App";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -704,13 +730,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Just Meditation/Just Meditation.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Just Meditation/Preview Content\"";
 				DEVELOPMENT_TEAM = YLK778Z528;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Just-Meditation-Info.plist";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "Track Your Meditation Progress inside Apple Health App";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Track Your Meditation Progress";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Track Your Meditation Progress inside Apple Health App";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
