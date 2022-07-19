@@ -6,10 +6,25 @@
 //
 
 import SwiftUI
+import UIKit
 import HealthKit
 import UserNotifications
-import AudioToolbox
+import AVFoundation
 
+
+var player: AVAudioPlayer!
+
+func playSound(sound_name: String) {
+    let url = Bundle.main.url(forResource: sound_name, withExtension: "wav")
+    
+    guard url != nil else { return }
+    do {
+        player = try AVAudioPlayer(contentsOf: url!)
+        player?.play()
+    } catch {
+        print("error")
+    }
+}
 
 struct TimerView: View {
     @EnvironmentObject var settings: Settings
@@ -35,14 +50,23 @@ struct TimerView: View {
         if !timerFinished {
             VStack {
                 // Header
+                #if os(iOS)
                 just_meditation(mode: "meditation")
+                #endif
                 // Timer View
                 HStack{
                     Text(activeTimer.toString(dateNow: dateNow))
+#if os(iOS)
                         .font(.system(size: 80, weight: .ultraLight, design: .rounded))
+#endif
+#if os(watchOS)
+                        .font(.system(size: 69, weight: .ultraLight, design: .rounded))
+#endif
                 }
+                #if os(iOS)
                 .onAppear { UIApplication.shared.isIdleTimerDisabled = true }
                 .onDisappear { UIApplication.shared.isIdleTimerDisabled = false }
+                #endif
                 // Buttons
                 TimerButtonRow(namespace, activeTimer: $activeTimer, timerRunning: $timerRunning, stop_button: stopButton)
                 .frame(maxHeight: .infinity, alignment: .bottom)
@@ -63,26 +87,29 @@ struct TimerView: View {
             }
             // when timer starts
             .onAppear() {
-                activeTimer.onStart(soundsEnabled: settings.soundsEnabled)
+                if settings.soundsEnabled {
+                    playSound(sound_name: "tibetan_gong_start")
+                }
                 updateNotification()
             }
         } else {
             VStack {
+                #if os(iOS)
                 just_meditation(mode: "meditation")
+                #endif
                 Text("You completed \(activeTimer.alreadyMeditated(dateNow: activeTimer.endDate - 1))")
                 Spacer().frame(maxHeight: .infinity)
-                Button(action: finishButton) {
-                    Text("FINISH")
-                        .frame(height: 28)
-                        .padding()
-                        .font(.system(size: 20, weight: .light, design: .monospaced))
-                        .foregroundColor(.white)
-                }
-                .overlay(
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke(.white, lineWidth: 1)
-                        .matchedGeometryEffect(id: "buttonCase", in: namespace)
-                )
+                Text("FINISH")
+                    .frame(height: 28)
+                    .padding()
+                    .font(.system(size: 20, weight: .light, design: .monospaced))
+                    .foregroundColor(.white)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(.white, lineWidth: 1)
+                            .matchedGeometryEffect(id: "buttonCase", in: namespace)
+                    )
+                    .onTapGesture(perform: finishButton)
             }
         }
     }
@@ -98,7 +125,9 @@ struct TimerView: View {
     }
     
     func stopButton() {
-        timerFinished = true
+        withAnimation {
+            timerFinished = true
+        }
         clearNotifications()
         // update end date
         activeTimer.endDate = Date()
@@ -109,18 +138,18 @@ struct TimerView: View {
         // final haptics and sounds
         if settings.soundsEnabled {
             // short haptics and gong
-            AudioServicesPlaySystemSound(1521)
+            // todo haptics
             playSound(sound_name: "tibetan_gong_finish")
         } else {
             // long haptic feedback (silent mode)
             for i in 1...4 {
                 DispatchQueue.main.asyncAfter(deadline: .now() + Double(i) * 0.5) {
+                    #if os(iOS)
                     AudioServicesPlaySystemSound(1521)
+                    #endif
                 }
             }
         }
-        
-        
     }
     
     func clearNotifications() {
@@ -135,8 +164,12 @@ struct TimerView: View {
         
             let content = UNMutableNotificationContent()
             content.title = "Meditation Finished"
-            content.sound = UNNotificationSound(named:UNNotificationSoundName(rawValue: "tibetan_gong_finish.wav"))
-
+            #if os(iOS)
+            content.sound = UNNotificationSound.init(named:UNNotificationSoundName(rawValue: "tibetan_gong_finish.wav"))
+            #endif
+            #if os(watchOS)
+            content.sound = UNNotificationSound.default
+            #endif
             // show this notification five seconds from now
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: Date().distance(to: activeTimer.endDate), repeats: false)
 
@@ -190,24 +223,22 @@ private struct TimerButtonRow: View {
     var body: some View {
         if !timerRunning {
             HStack {
-                Button(action: {
-                    withAnimation {
-                        timerRunning.toggle()
+                Image(systemName: "play")
+                    .frame(width: 20, height: 20)
+                    .padding(20)
+                    .foregroundColor(.white)
+                    .offset(x: 22)
+                    .onTapGesture {
+                        withAnimation {
+                            timerRunning.toggle()
+                        }
                     }
-                }){
-                    Image(systemName: "play")
-                        .frame(width: 20, height: 20)
-                        .padding(20)
-                        .foregroundColor(.white)
-                }
-                .offset(x: 22)
-                Button(action: stopButton) {
-                    Image(systemName: "stop")
-                        .frame(width: 20, height: 20)
-                        .foregroundColor(.red)
-                        .padding(8)
-                        .offset(x: 8)
-                }
+                Image(systemName: "stop")
+                    .frame(width: 20, height: 20)
+                    .foregroundColor(.red)
+                    .padding(8)
+                    .offset(x: 8)
+                    .onTapGesture(perform: stopButton)
             }
             .overlay(
                 RoundedRectangle(cornerRadius: 12)
@@ -216,26 +247,24 @@ private struct TimerButtonRow: View {
                     .offset(x: 22)
             )
         } else {
-            HStack {
-                Button(action: {
-                    withAnimation {
-                        timerRunning.toggle()
-                    }
-                }){
-                    Image(systemName: "pause")
-                        .frame(width: 20, height: 20)
-                        .padding(20)
-                }
+            Image(systemName: "pause")
+                .frame(width: 20, height: 20)
+                .padding(20)
+                .foregroundColor(.white)
                 .overlay(
                     RoundedRectangle(cornerRadius: 12)
                         .stroke(.white, lineWidth: 1)
                         .matchedGeometryEffect(id: "buttonCase", in: namespace)
                 )
-                .foregroundColor(.white)
-            }
+                .onTapGesture {
+                    withAnimation {
+                        timerRunning.toggle()
+                    }
+                }
         }
     }
 }
+
 
 struct TimerView_Previews: PreviewProvider {
     @Namespace static var namespace

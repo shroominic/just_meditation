@@ -12,7 +12,7 @@ struct Just_MeditationApp: App {
     @SceneBuilder var body: some Scene {
         WindowGroup {
             NavigationView {
-                WatchHomeView()
+                MainView()
             }
         }
 

@@ -16,3 +16,11 @@ struct Just_MeditationApp: App {
         }
     }
 }
+
+struct JustMeditation_Previews: PreviewProvider {
+    static var previews: some View {
+        MainView()
+            .preferredColorScheme(.dark)
+            .previewDevice("Apple Watch Series 7 - 41mm")
+    }
+}

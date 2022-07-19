@@ -9,12 +9,9 @@ import SwiftUI
 
 struct MainView: View {
     @Namespace var namespace
-    
     @StateObject var settings = Settings()
     
-    @State var showSettings: Bool = false
     @State var showTimerView: Bool = false
-    
     @State var activeTimer: ActiveTimer = ActiveTimer(durationInMinutes: 7)
     
     var body: some View {
@@ -30,9 +27,10 @@ struct MainView: View {
 }
 
 
-struct SwiftUIView_Previews: PreviewProvider {
+struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
             .preferredColorScheme(.dark)
+            .previewDevice("Apple Watch Series 7 - 41mm")
     }
 }

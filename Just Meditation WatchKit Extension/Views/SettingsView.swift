@@ -28,91 +28,93 @@ struct SettingsView: View {
                         InfoView()
                             .padding(.horizontal)
                     }
-                    VStack {
+                    VStack(alignment: .trailing) {
                         // CLOSE SETTINGS BUTTON
-                        Button(action: {
-                            withAnimation {
-                                showMore.toggle()
-                                showInfoView = false
+                        Image(systemName: "chevron.up.circle")
+                            .rotationEffect(Angle(degrees: 180))
+                            .frame(width: 25, height: 25, alignment: .center)
+                            .matchedGeometryEffect(id: "settingsgear", in: namespace)
+                            .foregroundColor(.white)
+                            .onTapGesture {
+                                withAnimation {
+                                    showMore.toggle()
+                                    showInfoView = false
+                                }
                             }
-                        }){
-                            Image(systemName: "chevron.up.circle")
-                                .rotationEffect(Angle(degrees: 180))
-                                .frame(width: 34, height: 34, alignment: .center)
-                                .matchedGeometryEffect(id: "settingsgear", in: namespace)
-                                .foregroundColor(.white)
-                        }
+                        VStack {
                         if showInfoView {
                             Spacer()
-                                .frame(height: 120)
+                                //.frame(height: 120)
                         } else {
-                            // APPLE HEALTH BUTTON
-                            SettingsItem(
-                                label: "Safe Data",
-                                buttonAction: {
-                                    if settings.healthSyncEnabled {
+                            HStack {
+                                // APPLE HEALTH BUTTON
+                                SettingsItem(
+                                    label: "Safe Data",
+                                    buttonAction: {
+                                        if settings.healthSyncEnabled {
+                                            withAnimation {
+                                                settings.healthSyncEnabled.toggle()
+                                                settings.saveData()
+                                            }
+                                        } else {
+                                            withAnimation {
+                                                activateHealthKit()
+                                            }
+                                        }},
+                                    systemIcons: ("arrow.up.heart.fill", "heart.slash.fill"),
+                                    switchVar: $settings.healthSyncEnabled)
+                                // SOUNDS BUTTON
+                                SettingsItem(
+                                    label: "Sounds",
+                                    buttonAction: {
                                         withAnimation {
-                                            settings.healthSyncEnabled.toggle()
+                                            settings.soundsEnabled.toggle()
                                             settings.saveData()
                                         }
-                                    } else {
+                                    },
+                                    systemIcons: ("speaker.wave.2.fill", "speaker.slash.fill"),
+                                    switchVar: $settings.soundsEnabled)
+                                // NOTIFICATIONS BUTTON
+                                SettingsItem(
+                                    label: "Notifications",
+                                    buttonAction: {
                                         withAnimation {
-                                            activateHealthKit()
+                                            toggleNotifications()
+                                            settings.saveData()
                                         }
-                                    }},
-                                systemIcons: ("arrow.up.heart.fill", "heart.slash.fill"),
-                                switchVar: $settings.healthSyncEnabled)
-                            // SOUNDS BUTTON
-                            SettingsItem(
-                                label: "Sounds",
-                                buttonAction: {
-                                    withAnimation {
-                                        settings.soundsEnabled.toggle()
-                                        settings.saveData()
-                                    }
-                                },
-                                systemIcons: ("speaker.wave.2.fill", "speaker.slash.fill"),
-                                switchVar: $settings.soundsEnabled)
-                            // NOTIFICATIONS BUTTON
-                            SettingsItem(
-                                label: "Notifications",
-                                buttonAction: {
-                                    withAnimation {
-                                        toggleNotifications()
-                                        settings.saveData()
-                                    }
-                                },
-                                systemIcons: ("bell.badge.fill", "bell.slash.fill"),
-                                switchVar: $settings.notificationEnabled)
-                            .alert("Please activate your notifications first.", isPresented: $showNotificationAlert) {
-                                        Button("OK", role: .cancel) { }
-                                    }
-                        }
-                        // SHOW INFO BUTTON
-                        Button(action: {
-                            withAnimation {
-                                showInfoView.toggle()
+                                    },
+                                    systemIcons: ("bell.badge.fill", "bell.slash.fill"),
+                                    switchVar: $settings.notificationEnabled)
+                                .alert("Please activate your notifications first.", isPresented: $showNotificationAlert) {
+                                            Button("OK", role: .cancel) { }
+                                        }
                             }
-                        }) {
-                            Image(systemName: "info.circle")
-                                .frame(width: 34, height: 34, alignment: .center)
-                                .foregroundColor(showInfoView ? .white : .gray)
-                        }
+                        }}.frame(maxHeight: .infinity, alignment: .center)
+                        // SHOW INFO BUTTON
+                        Image(systemName: "info.circle")
+                            .padding(.vertical, 5)
+                            .frame(width: 25, height: 25, alignment: .center)
+                            .foregroundColor(showInfoView ? .white : .gray)
+                            .onTapGesture {
+                                withAnimation {
+                                    showInfoView.toggle()
+                                }
+                            }
                     }
                 }
             } else {
                 // SETTINGS BUTTON
-                Button(action: {
-                    withAnimation {
-                        showMore.toggle()
+                Image(systemName: "chevron.up.circle")
+                    .rotationEffect(Angle(degrees: 0))
+                    .frame(width: 25, height: 25, alignment: .center)
+                    .matchedGeometryEffect(id: "settingsgear", in: namespace)
+                    .foregroundColor(.white)
+                    
+                    .onTapGesture {
+                        withAnimation {
+                            showMore.toggle()
+                        }
                     }
-                }){
-                    Image(systemName: "chevron.up.circle")
-                        .rotationEffect(Angle(degrees: 0))
-                        .frame(width: 34, height: 34, alignment: .center)
-                        .matchedGeometryEffect(id: "settingsgear", in: namespace)
-                        .foregroundColor(.white)
-                }
             }
         }
         .padding(5)
@@ -121,7 +123,7 @@ struct SettingsView: View {
                 .stroke(.white, lineWidth: 1)
         )
         .padding(.horizontal)
-        .padding(.vertical, 8)
+        .offset(y: 6)
         .background(.black)
     }
     
@@ -219,7 +221,6 @@ private struct SettingsItem: View {
             }
             .padding(5)
             .foregroundColor(switchVar ? .accentColor : .gray)
-            .background(Color.init(white: 0.05))
             .cornerRadius(8)
         }
     }
