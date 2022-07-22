@@ -255,7 +255,7 @@ private struct SettingsView_Previews: PreviewProvider {
     @StateObject static var settings = Settings()
     
     static var previews: some View {
-        HomeView(namespace: namespace, showTimerView: Binding.constant(false), activeTimer: Binding.constant(ActiveTimer(durationInMinutes: 7)))
+        HomeView(namespace, showTimerView: Binding.constant(false), activeTimer: Binding.constant(ActiveTimer()))
             .preferredColorScheme(.dark)
             .environmentObject(settings)
     }
