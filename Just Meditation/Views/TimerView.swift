@@ -47,7 +47,8 @@ struct TimerView: View {
             }
             // when timer starts
             .onAppear() {
-                
+                self.viewModel.activeTimer = activeTimer
+                viewModel.startTimer()
             }
         } else {
             VStack {
