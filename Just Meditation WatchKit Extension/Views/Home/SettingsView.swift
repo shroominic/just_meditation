@@ -231,16 +231,17 @@ private struct InfoView: View {
 
     var body: some View {
         HStack(alignment: .top) {
-            VStack {
+            ScrollView {
                 Text("""
                     Thanks for using just meditation
                     and I hope it helped you become sharp and clear again!
                     
                     If you want to support me just leave a rating in the AppStore.
                     
-                    socials: [linktr.ee/shroominic](https://linktr.ee/shroominic)
+                    socials:
+                    [linktr.ee/shroominic](https://linktr.ee/shroominic)
                     """)
-                    .font(.system(size: 13, weight: .light, design: .monospaced))
+                    .font(.system(size: 8, weight: .light, design: .monospaced))
                 Text("v\(appVersion ?? "no_version_found")")
                     .font(.system(size: 8, design: .monospaced))
                     .padding(.top, 5)

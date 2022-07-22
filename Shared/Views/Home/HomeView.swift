@@ -33,8 +33,10 @@ struct HomeView: View {
             // BUTTONS
             PlayButtonView(namespace: namespace, playButtonAction: playButtonAction)
                 .frame(maxHeight: .infinity, alignment: .bottom)
+#if os(iOS)
             SettingsView(namespace: namespace)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
+#endif
                 
         }
     }

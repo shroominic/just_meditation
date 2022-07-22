@@ -26,9 +26,12 @@ class ActiveTimer: ObservableObject {
         return formatter.string(from: startDate.distance(to: dateNow))!
     }
     
-    func toString(dateNow: Date) -> String {
-        
-        return formatter.string(from: dateNow.distance(to: self.endDate))!
+    func timeMeditated() -> TimeInterval {
+        return startDate.distance(to: Date())
+    }
+    
+    func timeRemaining() -> TimeInterval {
+        return Date().distance(to: self.endDate)
     }
 
     init(durationInMinutes: Int = 7) {

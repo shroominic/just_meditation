@@ -19,14 +19,16 @@
 		D520699228857EAE001B26ED /* ActiveTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D514BC0D28790DE8000D7C57 /* ActiveTimer.swift */; };
 		D520699328857EB6001B26ED /* tibetan_gong_finish.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5D3F0A3287CC321002EC9FF /* tibetan_gong_finish.wav */; };
 		D520699428857EBA001B26ED /* tibetan_gong_start.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5D3F0A2287CC321002EC9FF /* tibetan_gong_start.wav */; };
-		D520699E2885827E001B26ED /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53C20E12873A02F007930C5 /* TimerView.swift */; };
 		D520699F2885843B001B26ED /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53C20AA28736849007930C5 /* HomeView.swift */; };
 		D52069A128858478001B26ED /* just_meditation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D3F0A6287D16A8002EC9FF /* just_meditation.swift */; };
-		D525F1A528858B8600E87A36 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D525F1A228858B3000E87A36 /* MainView.swift */; };
 		D525F1A728859D4C00E87A36 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D525F1A628859D4C00E87A36 /* PickerView.swift */; };
 		D525F1A928859D5D00E87A36 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D525F1A828859D5C00E87A36 /* PickerView.swift */; };
 		D525F1AF2885A12900E87A36 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D525F1A228858B3000E87A36 /* MainView.swift */; };
 		D525F1B12885AE0100E87A36 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D525F1B02885AE0100E87A36 /* SettingsView.swift */; };
+		D53A273C288701B000D2B9F0 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53A273B288701B000D2B9F0 /* TimerView.swift */; };
+		D53A273E288701CC00D2B9F0 /* TimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53A273D288701CC00D2B9F0 /* TimerController.swift */; };
+		D53A2740288978B900D2B9F0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53A273F288978B900D2B9F0 /* MainView.swift */; };
+		D53A27432889934700D2B9F0 /* TimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53A273D288701CC00D2B9F0 /* TimerController.swift */; };
 		D53C20A928736849007930C5 /* Just_MeditationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53C20A828736849007930C5 /* Just_MeditationApp.swift */; };
 		D53C20AB28736849007930C5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53C20AA28736849007930C5 /* HomeView.swift */; };
 		D53C20B02873684A007930C5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D53C20AF2873684A007930C5 /* Preview Assets.xcassets */; };
@@ -100,6 +102,9 @@
 		D525F1A628859D4C00E87A36 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		D525F1A828859D5C00E87A36 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		D525F1B02885AE0100E87A36 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		D53A273B288701B000D2B9F0 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		D53A273D288701CC00D2B9F0 /* TimerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerController.swift; sourceTree = "<group>"; };
+		D53A273F288978B900D2B9F0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		D53C20A528736849007930C5 /* Just Meditation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Just Meditation.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D53C20A828736849007930C5 /* Just_MeditationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Just_MeditationApp.swift; sourceTree = "<group>"; };
 		D53C20AA28736849007930C5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -156,6 +161,7 @@
 			children = (
 				D514BC0D28790DE8000D7C57 /* ActiveTimer.swift */,
 				D514BC162879CB93000D7C57 /* Settings.swift */,
+				D53A273D288701CC00D2B9F0 /* TimerController.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -163,6 +169,8 @@
 		D514BC0C28790D93000D7C57 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D53A273F288978B900D2B9F0 /* MainView.swift */,
+				D53C20E12873A02F007930C5 /* TimerView.swift */,
 				D514BC182879CFAF000D7C57 /* SettingsView.swift */,
 				D525F1A628859D4C00E87A36 /* PickerView.swift */,
 			);
@@ -179,8 +187,9 @@
 		D520698D28857D70001B26ED /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D525F1A828859D5C00E87A36 /* PickerView.swift */,
-				D525F1B02885AE0100E87A36 /* SettingsView.swift */,
+				D525F1A228858B3000E87A36 /* MainView.swift */,
+				D53A27422889857400D2B9F0 /* Home */,
+				D53A273B288701B000D2B9F0 /* TimerView.swift */,
 				D53C20C92873684B007930C5 /* NotificationView.swift */,
 			);
 			path = Views;
@@ -189,9 +198,7 @@
 		D520699528857F5B001B26ED /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D525F1A228858B3000E87A36 /* MainView.swift */,
 				D5D3F0A6287D16A8002EC9FF /* just_meditation.swift */,
-				D520699A28857FFC001B26ED /* Timer */,
 				D520699928857FF6001B26ED /* Home */,
 			);
 			path = Views;
@@ -212,14 +219,6 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		D520699A28857FFC001B26ED /* Timer */ = {
-			isa = PBXGroup;
-			children = (
-				D53C20E12873A02F007930C5 /* TimerView.swift */,
-			);
-			path = Timer;
-			sourceTree = "<group>";
-		};
 		D52069A02885844C001B26ED /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +226,15 @@
 				D53C20C72873684B007930C5 /* NotificationController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D53A27422889857400D2B9F0 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				D525F1A828859D5C00E87A36 /* PickerView.swift */,
+				D525F1B02885AE0100E87A36 /* SettingsView.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		D53C209C28736849007930C5 = {
@@ -463,12 +471,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D514BC192879CFAF000D7C57 /* SettingsView.swift in Sources */,
-				D525F1A528858B8600E87A36 /* MainView.swift in Sources */,
 				D525F1A728859D4C00E87A36 /* PickerView.swift in Sources */,
+				D53A2740288978B900D2B9F0 /* MainView.swift in Sources */,
 				D514BC172879CB93000D7C57 /* Settings.swift in Sources */,
 				D53C20E22873A02F007930C5 /* TimerView.swift in Sources */,
 				D5D3F0A7287D16A8002EC9FF /* just_meditation.swift in Sources */,
 				D53C20AB28736849007930C5 /* HomeView.swift in Sources */,
+				D53A27432889934700D2B9F0 /* TimerController.swift in Sources */,
 				D53C20A928736849007930C5 /* Just_MeditationApp.swift in Sources */,
 				D514BC0E28790DE8000D7C57 /* ActiveTimer.swift in Sources */,
 			);
@@ -478,16 +487,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D520699E2885827E001B26ED /* TimerView.swift in Sources */,
 				D525F1AF2885A12900E87A36 /* MainView.swift in Sources */,
 				D520699128857E9B001B26ED /* Settings.swift in Sources */,
 				D520699F2885843B001B26ED /* HomeView.swift in Sources */,
 				D53C20C82873684B007930C5 /* NotificationController.swift in Sources */,
+				D53A273C288701B000D2B9F0 /* TimerView.swift in Sources */,
 				D53C20CC2873684B007930C5 /* ComplicationController.swift in Sources */,
 				D520699228857EAE001B26ED /* ActiveTimer.swift in Sources */,
 				D53C20C42873684B007930C5 /* Just_MeditationApp.swift in Sources */,
 				D525F1A928859D5D00E87A36 /* PickerView.swift in Sources */,
 				D53C20CA2873684B007930C5 /* NotificationView.swift in Sources */,
+				D53A273E288701CC00D2B9F0 /* TimerController.swift in Sources */,
 				D52069A128858478001B26ED /* just_meditation.swift in Sources */,
 				D525F1B12885AE0100E87A36 /* SettingsView.swift in Sources */,
 			);
