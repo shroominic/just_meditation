@@ -20,7 +20,7 @@ struct MainView: View {
                 TimerView(namespace, activeTimer: $activeTimer, showTimerView: $showTimerView)
             } else {
                 TabView{
-                    HomeView(namespace: namespace, showTimerView: $showTimerView, activeTimer: $activeTimer)
+                    HomeView(namespace, showTimerView: $showTimerView, activeTimer: $activeTimer)
                     SettingsView(namespace: namespace)
                 }
                 .tabViewStyle(PageTabViewStyle())

@@ -26,9 +26,9 @@
 		D525F1AF2885A12900E87A36 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D525F1A228858B3000E87A36 /* MainView.swift */; };
 		D525F1B12885AE0100E87A36 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D525F1B02885AE0100E87A36 /* SettingsView.swift */; };
 		D53A273C288701B000D2B9F0 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53A273B288701B000D2B9F0 /* TimerView.swift */; };
-		D53A273E288701CC00D2B9F0 /* TimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53A273D288701CC00D2B9F0 /* TimerController.swift */; };
+		D53A273E288701CC00D2B9F0 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53A273D288701CC00D2B9F0 /* TimerViewModel.swift */; };
 		D53A2740288978B900D2B9F0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53A273F288978B900D2B9F0 /* MainView.swift */; };
-		D53A27432889934700D2B9F0 /* TimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53A273D288701CC00D2B9F0 /* TimerController.swift */; };
+		D53A27432889934700D2B9F0 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53A273D288701CC00D2B9F0 /* TimerViewModel.swift */; };
 		D53C20A928736849007930C5 /* Just_MeditationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53C20A828736849007930C5 /* Just_MeditationApp.swift */; };
 		D53C20AB28736849007930C5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53C20AA28736849007930C5 /* HomeView.swift */; };
 		D53C20B02873684A007930C5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D53C20AF2873684A007930C5 /* Preview Assets.xcassets */; };
@@ -103,7 +103,7 @@
 		D525F1A828859D5C00E87A36 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		D525F1B02885AE0100E87A36 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D53A273B288701B000D2B9F0 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
-		D53A273D288701CC00D2B9F0 /* TimerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerController.swift; sourceTree = "<group>"; };
+		D53A273D288701CC00D2B9F0 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		D53A273F288978B900D2B9F0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		D53C20A528736849007930C5 /* Just Meditation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Just Meditation.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D53C20A828736849007930C5 /* Just_MeditationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Just_MeditationApp.swift; sourceTree = "<group>"; };
@@ -161,7 +161,7 @@
 			children = (
 				D514BC0D28790DE8000D7C57 /* ActiveTimer.swift */,
 				D514BC162879CB93000D7C57 /* Settings.swift */,
-				D53A273D288701CC00D2B9F0 /* TimerController.swift */,
+				D53A273D288701CC00D2B9F0 /* TimerViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -477,7 +477,7 @@
 				D53C20E22873A02F007930C5 /* TimerView.swift in Sources */,
 				D5D3F0A7287D16A8002EC9FF /* just_meditation.swift in Sources */,
 				D53C20AB28736849007930C5 /* HomeView.swift in Sources */,
-				D53A27432889934700D2B9F0 /* TimerController.swift in Sources */,
+				D53A27432889934700D2B9F0 /* TimerViewModel.swift in Sources */,
 				D53C20A928736849007930C5 /* Just_MeditationApp.swift in Sources */,
 				D514BC0E28790DE8000D7C57 /* ActiveTimer.swift in Sources */,
 			);
@@ -497,7 +497,7 @@
 				D53C20C42873684B007930C5 /* Just_MeditationApp.swift in Sources */,
 				D525F1A928859D5D00E87A36 /* PickerView.swift in Sources */,
 				D53C20CA2873684B007930C5 /* NotificationView.swift in Sources */,
-				D53A273E288701CC00D2B9F0 /* TimerController.swift in Sources */,
+				D53A273E288701CC00D2B9F0 /* TimerViewModel.swift in Sources */,
 				D52069A128858478001B26ED /* just_meditation.swift in Sources */,
 				D525F1B12885AE0100E87A36 /* SettingsView.swift in Sources */,
 			);
@@ -634,7 +634,7 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Just Meditation WatchKit Extension/Just Meditation WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Just Meditation WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = YLK778Z528;
 				ENABLE_PREVIEWS = YES;
@@ -669,7 +669,7 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Just Meditation WatchKit Extension/Just Meditation WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Just Meditation WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = YLK778Z528;
 				ENABLE_PREVIEWS = YES;
@@ -708,7 +708,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = YLK778Z528;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = Just_Meditation_WatchKit_Extension;
@@ -741,7 +741,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = YLK778Z528;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = Just_Meditation_WatchKit_Extension;
@@ -772,7 +772,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Just Meditation/Just Meditation.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Just Meditation/Preview Content\"";
 				DEVELOPMENT_TEAM = YLK778Z528;
 				ENABLE_PREVIEWS = YES;
@@ -808,7 +808,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Just Meditation/Just Meditation.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Just Meditation/Preview Content\"";
 				DEVELOPMENT_TEAM = YLK778Z528;
 				ENABLE_PREVIEWS = YES;

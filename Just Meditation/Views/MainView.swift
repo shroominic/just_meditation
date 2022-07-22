@@ -19,7 +19,7 @@ struct MainView: View {
             if showTimerView {
                 TimerView(namespace, activeTimer: $activeTimer, showTimerView: $showTimerView)
             } else {
-                HomeView(namespace: namespace, showTimerView: $showTimerView, activeTimer: $activeTimer)
+                HomeView(namespace, showTimerView: $showTimerView, activeTimer: $activeTimer)
             }
         }
         .environmentObject(settings)
