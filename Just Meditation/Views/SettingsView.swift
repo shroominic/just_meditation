@@ -31,7 +31,7 @@ struct SettingsView: View {
                     VStack {
                         // CLOSE SETTINGS BUTTON
                         Button(action: {
-                            withAnimation {
+                            withAnimation(.spring(response: 0.25, dampingFraction: 0.7, blendDuration: 1)) {
                                 showMore.toggle()
                                 showInfoView = false
                             }
@@ -90,7 +90,7 @@ struct SettingsView: View {
                         }
                         // SHOW INFO BUTTON
                         Button(action: {
-                            withAnimation {
+                            withAnimation(.spring(response: 0.25, dampingFraction: 0.7, blendDuration: 1)) {
                                 showInfoView.toggle()
                             }
                         }) {
@@ -103,7 +103,7 @@ struct SettingsView: View {
             } else {
                 // SETTINGS BUTTON
                 Button(action: {
-                    withAnimation {
+                    withAnimation(.spring(response: 0.25, dampingFraction: 0.7, blendDuration: 1)) {
                         showMore.toggle()
                     }
                 }){

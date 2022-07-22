@@ -93,7 +93,7 @@ extension TimerView {
         }
         
         func stopButton() {
-            withAnimation {
+            withAnimation(.spring(response: 0.25, dampingFraction: 0.7, blendDuration: 1)) {
                 timerFinished = true
             }
             clearNotifications()
@@ -113,7 +113,7 @@ extension TimerView {
                 }
             }
 #endif
-            withAnimation {
+            withAnimation(.spring(response: 0.25, dampingFraction: 0.7, blendDuration: 1)) {
                 timerFinished = true
             }
             clearNotifications()

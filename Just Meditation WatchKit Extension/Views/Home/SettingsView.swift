@@ -36,7 +36,7 @@ struct SettingsView: View {
                             .matchedGeometryEffect(id: "settingsgear", in: namespace)
                             .foregroundColor(.white)
                             .onTapGesture {
-                                withAnimation {
+                                withAnimation(.spring(response: 0.25, dampingFraction: 0.7, blendDuration: 1)) {
                                     showMore.toggle()
                                     showInfoView = false
                                 }
@@ -96,7 +96,7 @@ struct SettingsView: View {
                             .frame(width: 25, height: 25, alignment: .center)
                             .foregroundColor(showInfoView ? .white : .gray)
                             .onTapGesture {
-                                withAnimation {
+                                withAnimation(.spring(response: 0.25, dampingFraction: 0.7, blendDuration: 1)) {
                                     showInfoView.toggle()
                                 }
                             }
@@ -111,7 +111,7 @@ struct SettingsView: View {
                     .foregroundColor(.white)
                     
                     .onTapGesture {
-                        withAnimation {
+                        withAnimation(.spring(response: 0.25, dampingFraction: 0.7, blendDuration: 1)) {
                             showMore.toggle()
                         }
                     }

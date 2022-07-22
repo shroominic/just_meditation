@@ -103,7 +103,7 @@ private struct TimerButtonRow: View {
                     .foregroundColor(.white)
                     .offset(x: 22)
                     .onTapGesture {
-                        withAnimation {
+                        withAnimation(.spring(response: 0.25, dampingFraction: 0.7, blendDuration: 1)) {
                             timerRunning.toggle()
                         }
                     }
@@ -131,7 +131,7 @@ private struct TimerButtonRow: View {
                         .matchedGeometryEffect(id: "buttonCase", in: namespace)
                 )
                 .onTapGesture {
-                    withAnimation {
+                    withAnimation(.spring(response: 0.25, dampingFraction: 0.7, blendDuration: 1)) {
                         timerRunning.toggle()
                     }
                 }
