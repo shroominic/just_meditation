@@ -3,8 +3,8 @@ title:       just meditation Privacy Policy
 description: This page covers the Privacy Policy (Policy) of the Discord Bot "Sensei Doro".
 ---
 
-[just meditation Terms of Service]: https://github.com/shroominic/just_meditation/main/legal/TERMS_OF_SERVICE.md
-[just meditation Privacy Policy]:   https://github.com/shroominic/just_meditation/main/legal/PRIVACY_POLICY.md
+[just meditation Terms of Service]: https://github.com/shroominic/just_meditation/main/TERMS_OF_SERVICE.md
+[just meditation Privacy Policy]:   https://github.com/shroominic/just_meditation/main/PRIVACY_POLICY.md
 
 Privacy Policy
 --------------
