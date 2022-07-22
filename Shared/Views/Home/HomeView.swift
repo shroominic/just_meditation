@@ -13,10 +13,23 @@ struct HomeView: View {
     @EnvironmentObject var settings: Settings
     let namespace: Namespace.ID
     
-    @State var duration: Int = 7
+    @State var duration: Int
     
     @Binding var showTimerView: Bool
     @Binding var activeTimer: ActiveTimer
+    
+    init(_ namespace: Namespace.ID, showTimerView: Binding<Bool>, activeTimer: Binding<ActiveTimer>) {
+        self.namespace = namespace
+        self._showTimerView = showTimerView
+        self._activeTimer = activeTimer
+        // import saved app data
+        if let data = UserDefaults.standard.object(forKey: "latestDuration") as? Int {
+            self.duration = data
+        } else {
+            self.duration = 7
+        }
+        
+    }
     
     var body: some View {
         ZStack {
@@ -43,6 +56,7 @@ struct HomeView: View {
     
     func playButtonAction() {
         activeTimer = ActiveTimer(durationInMinutes: duration)
+        saveDuration()
         withAnimation {
             showTimerView.toggle()
         }
@@ -52,6 +66,11 @@ struct HomeView: View {
 #if os(watchOS)
         WKInterfaceDevice.current().play(.start)
 #endif
+    }
+    
+    func saveDuration() {
+        let data: Int = self.duration
+        UserDefaults.standard.set(data, forKey: "latestDuration")
     }
     
 }
@@ -86,7 +105,7 @@ struct HomeView_Previews: PreviewProvider {
     @StateObject static var settings = Settings()
     
     static var previews: some View {
-        HomeView(namespace: namespace, showTimerView: Binding.constant(false), activeTimer: Binding.constant(ActiveTimer(durationInMinutes: 7)))
+        HomeView(namespace, showTimerView: Binding.constant(false), activeTimer: Binding.constant(ActiveTimer(durationInMinutes: 7)))
             .environmentObject(settings)
             .preferredColorScheme(.dark)
             
