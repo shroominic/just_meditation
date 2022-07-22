@@ -6,9 +6,6 @@
 //
 
 import SwiftUI
-import HealthKit
-import UserNotifications
-import AVFoundation
 
 
 struct TimerView: View {
@@ -28,17 +25,13 @@ struct TimerView: View {
     var body: some View {
         if !viewModel.timerFinished {
             VStack {
-                // Header
-                just_meditation(mode: "meditation")
                 // Timer View
                 HStack{
                     Text(viewModel.timerString())
-                        .font(.system(size: 80, weight: .ultraLight, design: .rounded))
+                        .font(.system(size: 69, weight: .ultraLight, design: .rounded))
                 }
-                .onAppear { UIApplication.shared.isIdleTimerDisabled = true }
-                .onDisappear { UIApplication.shared.isIdleTimerDisabled = false }
                 // Buttons
-                TimerButtonRow(namespace, activeTimer: activeTimer, timerRunning: $viewModel.timerRunning, stop_button: { viewModel.stopButton() })
+                TimerButtonRow(namespace, activeTimer: $activeTimer, timerRunning: $viewModel.timerRunning, stop_button: { viewModel.stopButton() })
                 .frame(maxHeight: .infinity, alignment: .bottom)
             }
             // every second tick
@@ -47,13 +40,13 @@ struct TimerView: View {
             }
             // when timer starts
             .onAppear() {
-                
+                self.viewModel.activeTimer = activeTimer
+                viewModel.startTimer()
             }
         } else {
             VStack {
-                just_meditation(mode: "meditation")
                 Text("You completed \(viewModel.minutesCompleted())")
-                Spacer().frame(maxHeight: .infinity)
+                    .frame(maxHeight: .infinity, alignment: .center)
                 Text("FINISH")
                     .frame(height: 28)
                     .padding()
@@ -64,13 +57,13 @@ struct TimerView: View {
                             .stroke(.white, lineWidth: 1)
                             .matchedGeometryEffect(id: "buttonCase", in: namespace)
                     )
-                    .onTapGesture(perform: {
+                    .onTapGesture {
                         viewModel.finishButton()
                         // close finished timer view
                         withAnimation {
                             showTimer.toggle()
                         }
-                    })
+                    }
             }
         }
     }
@@ -81,14 +74,14 @@ private struct TimerButtonRow: View {
     @EnvironmentObject var settings: Settings
     let namespace: Namespace.ID
         
-    var activeTimer: ActiveTimer
+    @Binding var activeTimer: ActiveTimer
     @Binding var timerRunning: Bool
     
     var stopButton: () -> Void
     
-    init(_ namespace: Namespace.ID, activeTimer: ActiveTimer, timerRunning: Binding<Bool>, stop_button: @escaping () -> Void) {
+    init(_ namespace: Namespace.ID, activeTimer: Binding<ActiveTimer>, timerRunning: Binding<Bool>, stop_button: @escaping () -> Void) {
         self.namespace = namespace
-        self.activeTimer = activeTimer
+        self._activeTimer = activeTimer
         self._timerRunning = timerRunning
         self.stopButton = stop_button
     }

@@ -19,7 +19,12 @@ struct MainView: View {
             if showTimerView {
                 TimerView(namespace, activeTimer: $activeTimer, showTimerView: $showTimerView)
             } else {
-                HomeView(namespace: namespace, showTimerView: $showTimerView, activeTimer: $activeTimer)
+                TabView{
+                    HomeView(namespace: namespace, showTimerView: $showTimerView, activeTimer: $activeTimer)
+                    SettingsView(namespace: namespace)
+                }
+                .tabViewStyle(PageTabViewStyle())
+                .ignoresSafeArea()
             }
         }
         .environmentObject(settings)

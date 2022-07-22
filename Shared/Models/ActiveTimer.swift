@@ -6,23 +6,9 @@
 //
 
 import Foundation
-import AVFoundation
 
 
-var player: AVAudioPlayer!
 let formatter = DateComponentsFormatter()
-
-func playSound(sound_name: String) {
-    let url = Bundle.main.url(forResource: sound_name, withExtension: "wav")
-    
-    guard url != nil else { return }
-    do {
-        player = try AVAudioPlayer(contentsOf: url!)
-        player?.play()
-    } catch {
-        print("error")
-    }
-}
 
 
 class ActiveTimer: ObservableObject {
@@ -40,21 +26,16 @@ class ActiveTimer: ObservableObject {
         return formatter.string(from: startDate.distance(to: dateNow))!
     }
     
-    func toString(dateNow: Date) -> String {
-        
-        return formatter.string(from: dateNow.distance(to: self.endDate))!
+    func timeMeditated() -> TimeInterval {
+        return startDate.distance(to: Date())
+    }
+    
+    func timeRemaining() -> TimeInterval {
+        return Date().distance(to: self.endDate)
     }
 
     init(durationInMinutes: Int = 7) {
         self.startDate = Date()
         self.endDate = Date() + TimeInterval(60*durationInMinutes + 1)
-    }
-    
-    func onStart(soundsEnabled: Bool) {
-        // play some start vibration
-        // vibrate()
-        if soundsEnabled {
-            playSound(sound_name: "tibetan_gong_start")
-        }
     }
 }
