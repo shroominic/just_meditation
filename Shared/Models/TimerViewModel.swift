@@ -14,7 +14,7 @@ import UserNotifications
 
 extension TimerView {
     @MainActor class TimerViewModel: ObservableObject {
-        var settings = Settings() // ´better pass settings through?
+        var settings = Settings() // better pass settings through?
 
         var player: AVAudioPlayer!
         var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -63,7 +63,10 @@ extension TimerView {
         }
         
         func tick() {
-            if Date() >= activeTimer.endDate {
+            if timerFinished {
+                return
+            }
+            else if Date() >= activeTimer.endDate {
                 stopTimer()
             }
             else if timerRunning {
@@ -79,7 +82,7 @@ extension TimerView {
             return formatter.string(from: activeTimer.timeRemaining())!
         }
         
-        func minutesCompleted() -> String {
+        func timerCompleted() -> String {
             return activeTimer.alreadyMeditated(dateNow: activeTimer.endDate - 1)
         }
         
@@ -93,15 +96,15 @@ extension TimerView {
         }
         
         func stopButton() {
+#if os(watchOS)
+            session?.invalidate()
+#endif
             withAnimation(.spring(response: 0.25, dampingFraction: 0.7, blendDuration: 1)) {
                 timerFinished = true
             }
             clearNotifications()
             // update end date
             activeTimer.endDate = Date()
-#if os(watchOS)
-            session?.invalidate()
-#endif
         }
         
         func stopTimer() {
@@ -164,7 +167,10 @@ extension TimerView {
                 content.title = "Meditation Finished"
                 content.sound = UNNotificationSound.default
                 // show this notification five seconds from now
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: Date().distance(to: activeTimer.endDate), repeats: false)
+                let interval = Date().distance(to: activeTimer.endDate)
+                guard interval > 0 else { return }
+                
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: false)
 
                 // choose a random identifier
                 let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)

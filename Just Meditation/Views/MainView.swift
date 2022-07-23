@@ -23,6 +23,7 @@ struct MainView: View {
             }
         }
         .environmentObject(settings)
+        .statusBar(hidden: true)
     }
 }
 

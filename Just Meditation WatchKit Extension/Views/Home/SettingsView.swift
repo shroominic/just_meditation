@@ -14,110 +14,52 @@ struct SettingsView: View {
     @EnvironmentObject var settings: Settings
     var namespace: Namespace.ID
     
-    
     @State var showMore: Bool = false
-    @State var showInfoView: Bool = false
+    @State private var showView: SettingViews = .switches
+    
     @State var showNotificationAlert: Bool = false
     
     var body: some View {
         ZStack {
-
-            if showMore {
-                HStack {
-                    if showInfoView {
+            HStack {
+                // SETTING PAGES
+                HStack(alignment: .bottom) {
+                    switch showView {
+                    case .infos:
                         InfoView()
-                            .padding(.horizontal)
-                    }
-                    VStack(alignment: .trailing) {
-                        // CLOSE SETTINGS BUTTON
-                        Image(systemName: "chevron.up.circle")
-                            .rotationEffect(Angle(degrees: 180))
-                            .frame(width: 25, height: 25, alignment: .center)
-                            .matchedGeometryEffect(id: "settingsgear", in: namespace)
-                            .foregroundColor(.white)
-                            .onTapGesture {
-                                withAnimation(.spring(response: 0.25, dampingFraction: 0.7, blendDuration: 1)) {
-                                    showMore.toggle()
-                                    showInfoView = false
-                                }
-                            }
-                        VStack {
-                        if showInfoView {
-                            Spacer()
-                                //.frame(height: 120)
-                        } else {
-                            HStack {
-                                // APPLE HEALTH BUTTON
-                                SettingsItem(
-                                    label: "Safe Data",
-                                    buttonAction: {
-                                        if settings.healthSyncEnabled {
-                                            withAnimation {
-                                                settings.healthSyncEnabled.toggle()
-                                                settings.saveData()
-                                            }
-                                        } else {
-                                            withAnimation {
-                                                activateHealthKit()
-                                            }
-                                        }},
-                                    systemIcons: ("arrow.up.heart.fill", "heart.slash.fill"),
-                                    switchVar: $settings.healthSyncEnabled)
-                                // SOUNDS BUTTON
-                                SettingsItem(
-                                    label: "Sounds",
-                                    buttonAction: {
-                                        withAnimation {
-                                            settings.soundsEnabled.toggle()
-                                            settings.saveData()
-                                        }
-                                    },
-                                    systemIcons: ("speaker.wave.2.fill", "speaker.slash.fill"),
-                                    switchVar: $settings.soundsEnabled)
-                                // NOTIFICATIONS BUTTON
-                                SettingsItem(
-                                    label: "Notifications",
-                                    buttonAction: {
-                                        withAnimation {
-                                            toggleNotifications()
-                                            settings.saveData()
-                                        }
-                                    },
-                                    systemIcons: ("bell.badge.fill", "bell.slash.fill"),
-                                    switchVar: $settings.notificationEnabled)
-                                .alert("Please activate your notifications first.", isPresented: $showNotificationAlert) {
-                                            Button("OK", role: .cancel) { }
-                                        }
-                            }
-                        }}.frame(maxHeight: .infinity, alignment: .center)
-                        // SHOW INFO BUTTON
-                        Image(systemName: "info.circle")
-                            .padding(.vertical, 5)
-                            .frame(width: 25, height: 25, alignment: .center)
-                            .foregroundColor(showInfoView ? .white : .gray)
-                            .onTapGesture {
-                                withAnimation(.spring(response: 0.25, dampingFraction: 0.7, blendDuration: 1)) {
-                                    showInfoView.toggle()
-                                }
-                            }
+                    case .switches:
+                        SettingsSwitchPage(showNotificationAlert: $showNotificationAlert)
                     }
                 }
-            } else {
-                // SETTINGS BUTTON
-                Image(systemName: "chevron.up.circle")
-                    .rotationEffect(Angle(degrees: 0))
-                    .frame(width: 25, height: 25, alignment: .center)
-                    .matchedGeometryEffect(id: "settingsgear", in: namespace)
-                    .foregroundColor(.white)
-                    
-                    .onTapGesture {
-                        withAnimation(.spring(response: 0.25, dampingFraction: 0.7, blendDuration: 1)) {
-                            showMore.toggle()
+                // SETTING NAVIGATION
+                VStack(alignment: .trailing) {
+                    // SWITCHES
+                    Image(systemName: "gear")
+                        .rotationEffect(Angle(degrees: 180))
+                        .frame(width: 25, height: 25)
+                        .matchedGeometryEffect(id: "settingsgear", in: namespace)
+                        .foregroundColor((self.showView == .switches) ? .white : .gray)
+                        .onTapGesture {
+                            withAnimation(.spring(response: 0.25, dampingFraction: 0.7, blendDuration: 1)) {
+                                showView = .switches
+                            }
                         }
-                    }
+                    
+                    // SHOW INFO BUTTON
+                    Image(systemName: "info.circle")
+                        .padding(.vertical, 5)
+                        .frame(width: 25, height: 25, alignment: .center)
+                        .foregroundColor(self.showView == .infos ? .white : .gray)
+                        .onTapGesture {
+                            withAnimation(.spring(response: 0.25, dampingFraction: 0.7, blendDuration: 1)) {
+                                showView = .infos
+                            }
+                        }
+                }
             }
         }
         .padding(5)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .overlay(
             RoundedRectangle(cornerRadius: 12)
                 .stroke(.white, lineWidth: 1)
@@ -125,6 +67,65 @@ struct SettingsView: View {
         .padding(.horizontal)
         .offset(y: 6)
         .background(.black)
+    }
+}
+
+private enum SettingViews {
+    case infos
+    case switches
+}
+
+private struct SettingsSwitchPage: View {
+    @EnvironmentObject var settings: Settings
+    @Binding var showNotificationAlert: Bool
+    
+    var body: some View {
+        VStack {
+            HStack {
+                // APPLE HEALTH BUTTON
+                SettingsItem(
+                    label: "Safe Data",
+                    buttonAction: {
+                        if settings.healthSyncEnabled {
+                            withAnimation {
+                                settings.healthSyncEnabled.toggle()
+                                settings.saveData()
+                            }
+                        } else {
+                            withAnimation {
+                                activateHealthKit()
+                            }
+                        }},
+                    systemIcons: ("arrow.up.heart.fill", "heart.slash.fill"),
+                    switchVar: $settings.healthSyncEnabled)
+                // SOUNDS BUTTON
+                SettingsItem(
+                    label: "Sounds",
+                    buttonAction: {
+                        withAnimation {
+                            settings.soundsEnabled.toggle()
+                            settings.saveData()
+                        }
+                    },
+                    systemIcons: ("speaker.wave.2.fill", "speaker.slash.fill"),
+                    switchVar: $settings.soundsEnabled)
+                // NOTIFICATIONS BUTTON
+                SettingsItem(
+                    label: "Notifications",
+                    buttonAction: {
+                        withAnimation {
+                            toggleNotifications()
+                            settings.saveData()
+                        }
+                    },
+                    systemIcons: ("bell.badge.fill", "bell.slash.fill"),
+                    switchVar: $settings.notificationEnabled)
+                .alert("Please activate your notifications first.", isPresented: $showNotificationAlert) {
+                            Button("OK", role: .cancel) { }
+                        }
+            }
+        }
+        .frame(maxHeight: .infinity, alignment: .center)
     }
     
     func toggleNotifications() {
@@ -170,6 +171,7 @@ struct SettingsView: View {
         })
     }
     
+    
     func activateHealthKit() {
         let healthStore = HKHealthStore()
         
@@ -202,31 +204,31 @@ struct SettingsView: View {
     }
     
     
-}
+    private struct SettingsItem: View {
+        
+        let label: String
+        let buttonAction: () -> ()
+        var systemIcons: (String, String)
 
-private struct SettingsItem: View {
-    
-    let label: String
-    let buttonAction: () -> ()
-    var systemIcons: (String, String)
-
-    @Binding var switchVar: Bool
-    
-    
-    var body: some View {
-        Button(action: buttonAction) {
-            VStack {
-                Image(systemName: switchVar ? systemIcons.0 : systemIcons.1)
-                    .frame(width: 25, height: 25, alignment: .center)
+        @Binding var switchVar: Bool
+        
+        var body: some View {
+            Button(action: buttonAction) {
+                VStack {
+                    Image(systemName: switchVar ? systemIcons.0 : systemIcons.1)
+                        .frame(width: 25, height: 25, alignment: .center)
+                }
+                .padding(5)
+                .foregroundColor(switchVar ? .accentColor : .gray)
+                .cornerRadius(8)
             }
-            .padding(5)
-            .foregroundColor(switchVar ? .accentColor : .gray)
-            .cornerRadius(8)
         }
     }
 }
 
+
 private struct InfoView: View {
+    
     let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
 
     var body: some View {
@@ -260,5 +262,6 @@ private struct SettingsView_Previews: PreviewProvider {
         HomeView(namespace, showTimerView: Binding.constant(false), activeTimer: Binding.constant(ActiveTimer(durationInMinutes: 7)))
             .preferredColorScheme(.dark)
             .environmentObject(settings)
+            
     }
 }

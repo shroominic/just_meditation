@@ -31,7 +31,7 @@ struct TimerView: View {
                         .font(.system(size: 69, weight: .ultraLight, design: .rounded))
                 }
                 // Buttons
-                TimerButtonRow(namespace, activeTimer: $activeTimer, timerRunning: $viewModel.timerRunning, stop_button: { viewModel.stopButton() })
+                TimerButtonRow(namespace, activeTimer: activeTimer, timerRunning: $viewModel.timerRunning, stop_button: { viewModel.stopButton() })
                 .frame(maxHeight: .infinity, alignment: .bottom)
             }
             // every second tick
@@ -45,7 +45,7 @@ struct TimerView: View {
             }
         } else {
             VStack {
-                Text("You completed \(viewModel.minutesCompleted())")
+                Text("You completed \(viewModel.timerCompleted())")
                     .frame(maxHeight: .infinity, alignment: .center)
                 Text("FINISH")
                     .frame(height: 28)
@@ -74,14 +74,14 @@ private struct TimerButtonRow: View {
     @EnvironmentObject var settings: Settings
     let namespace: Namespace.ID
         
-    @Binding var activeTimer: ActiveTimer
+    var activeTimer: ActiveTimer
     @Binding var timerRunning: Bool
     
     var stopButton: () -> Void
     
-    init(_ namespace: Namespace.ID, activeTimer: Binding<ActiveTimer>, timerRunning: Binding<Bool>, stop_button: @escaping () -> Void) {
+    init(_ namespace: Namespace.ID, activeTimer: ActiveTimer, timerRunning: Binding<Bool>, stop_button: @escaping () -> Void) {
         self.namespace = namespace
-        self._activeTimer = activeTimer
+        self.activeTimer = activeTimer
         self._timerRunning = timerRunning
         self.stopButton = stop_button
     }

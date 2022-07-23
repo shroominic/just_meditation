@@ -15,7 +15,6 @@ struct Just_MeditationApp: App {
                 MainView()
             }
         }
-
         WKNotificationScene(controller: NotificationController.self, category: "myCategory")
     }
 }

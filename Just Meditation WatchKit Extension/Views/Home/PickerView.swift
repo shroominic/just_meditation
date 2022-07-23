@@ -15,6 +15,7 @@ struct PickerView: View {
             Text("MIN")
                 .font(.system(size: 12, weight: .bold))
                 .foregroundColor(.gray)
+                .frame(width: 60, height: 30)
                 .hidden()
             Picker("DURATION", selection: $duration, content: {
                 ForEach(1...60, id: \.self) {i in
@@ -25,15 +26,12 @@ struct PickerView: View {
             .pickerStyle(.wheel)
             .labelsHidden()
             .frame(width: 42, height: 64)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-            .overlay(
-                RoundedRectangle(cornerRadius: 12)
-                    .stroke(.gray, lineWidth: 1)
-            )
+            
             .padding(.horizontal)
             Text("MIN")
                 .font(.system(size: 12, weight: .bold))
                 .foregroundColor(.gray)
+                .frame(width: 60, height: 30, alignment: .leading)
         }
         .padding(.horizontal, 30)
         .padding(.vertical, 10)

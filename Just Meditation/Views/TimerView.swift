@@ -53,7 +53,7 @@ struct TimerView: View {
         } else {
             VStack {
                 just_meditation(mode: "meditation")
-                Text("You completed \(viewModel.minutesCompleted())")
+                Text("You completed \(viewModel.timerCompleted())")
                 Spacer().frame(maxHeight: .infinity)
                 Text("FINISH")
                     .frame(height: 28)
@@ -147,5 +147,6 @@ struct TimerView_Previews: PreviewProvider {
         TimerView(namespace, activeTimer: Binding.constant(ActiveTimer()), showTimerView: Binding.constant(true))
             .preferredColorScheme(.dark)
             .environmentObject(Settings())
+            .previewInterfaceOrientation(.portrait)
     }
 }
