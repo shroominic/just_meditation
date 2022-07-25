@@ -161,7 +161,6 @@
 			children = (
 				D514BC0D28790DE8000D7C57 /* ActiveTimer.swift */,
 				D514BC162879CB93000D7C57 /* Settings.swift */,
-				D53A273D288701CC00D2B9F0 /* TimerViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -202,13 +201,6 @@
 				D520699928857FF6001B26ED /* Home */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		D520699628857F6B001B26ED /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		D520699928857FF6001B26ED /* Home */ = {
@@ -317,7 +309,7 @@
 			children = (
 				D514BC0B28790D84000D7C57 /* Models */,
 				D520699528857F5B001B26ED /* Views */,
-				D520699628857F6B001B26ED /* ViewModels */,
+				D5E10435288EC53700FE04C5 /* ViewModels */,
 				D5D3F0A1287CC2FC002EC9FF /* Audio */,
 			);
 			path = Shared;
@@ -330,6 +322,14 @@
 				D5D3F0A2287CC321002EC9FF /* tibetan_gong_start.wav */,
 			);
 			path = Audio;
+			sourceTree = "<group>";
+		};
+		D5E10435288EC53700FE04C5 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				D53A273D288701CC00D2B9F0 /* TimerViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
