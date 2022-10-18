@@ -9,3 +9,5 @@ Just (have a) Meditation( and become calm again)
 -> watchOS compatible
 
 -> have a notification at the end of your session
+
+[Download on the AppStore](https://apps.apple.com/us/app/just-meditation/id1634620265)
